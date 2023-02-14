@@ -1,3 +1,6 @@
+/************************************/
+/* GLOBAL RESET */
+/************************************/
 *,
 *::after,
 *::before {
@@ -6,6 +9,9 @@
   padding: 0;
 }
 
+/*************************************/
+/* GLOBAL STYLING */
+/*************************************/
 html {
   font-size: 62.5%;
   background-color: rgb(32, 33, 36);
@@ -20,20 +26,27 @@ img {
 .container {
   max-width: 80%;
   margin: 1rem auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 1rem 4rem;
+  border-radius: 1.2rem;
 
   display: flex;
   justify-content: space-between;
 }
 
+/*************************************/
+/* HEADER STYLING */
+/*************************************/
 .header {
   justify-content: flex-start;
+  background-color: rgb(54, 48, 158);
 }
 .logo-link {
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  border-radius: 1.2rem;
 }
 .logo-link:link,
 .logo-link:visited {
@@ -41,18 +54,124 @@ img {
   color: rgb(231, 228, 239);
 }
 
-.logo-link:hover,
-.logo-link:active {
-  text-decoration: underline;
-  text-decoration-color: rgb(54, 48, 158);
-}
-
 .logo-img {
   width: 10rem;
+  border-radius: 1.2rem;
 }
 
 .logo-text {
   font-size: 3rem;
   letter-spacing: 0.1rem;
   font-weight: 500;
+  transition: all ease-in-out 0.3s;
+}
+.logo-text:hover {
+  letter-spacing: 0.25rem;
+}
+
+/*************************************/
+/* MAIN STYLING */
+/*************************************/
+.section-main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+}
+
+.tiles-container {
+  display: grid;
+  grid-template-areas:
+    "1 1 1"
+    "2 2 2"
+    "3 3 3";
+
+  margin: 25rem auto;
+  transform: rotate(45deg);
+}
+
+.one {
+  grid-area: 1;
+}
+.two {
+  grid-area: 1;
+}
+.three {
+  grid-area: 1;
+}
+.four {
+  grid-area: 2;
+}
+.five {
+  grid-area: 2;
+}
+.six {
+  grid-area: 2;
+}
+.seven {
+  grid-area: 3;
+}
+.eight {
+  grid-area: 3;
+}
+.nine {
+  grid-area: 3;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 3rem;
+  width: 20rem;
+  min-height: 20rem;
+  border: 1px solid red;
+}
+
+.tile-text {
+  transform: rotate(-45deg);
+}
+
+.meteor {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.meteor-yellow,
+.meteor-blue {
+  grid-row: 1;
+  margin-top: 4rem;
+}
+.meteor-blue {
+  grid-column: 3;
+}
+
+.meteor-yellow {
+  grid-column: 1;
+  justify-self: end;
+}
+/*************************************/
+/* FOOTER STYLING */
+/*************************************/
+.footer {
+  padding: 2rem 4rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  background-color: rgb(54, 48, 158);
+}
+
+.contact-me_link,
+.contact-me_link:link,
+.contact-me_link:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: rgb(231, 228, 239);
+  transition: transform 0.3s;
+}
+
+.contact-me_link:hover,
+.contact-me_link:active {
+  text-decoration: underline;
+  transform: scale(1.1);
 }
