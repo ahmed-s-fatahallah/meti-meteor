@@ -3,10 +3,19 @@ const mainSectionEl = document.querySelector(".main");
 const tilesEl = document.querySelectorAll(".tile");
 const [blueMeteor, yellowMeteor] = Array.from(meteorsEl);
 
-const blueInitPosTop = getComputedStyle(blueMeteor).top;
-const blueInitPosLeft = getComputedStyle(blueMeteor).left;
-const yellowInitPosTop = getComputedStyle(yellowMeteor).top;
-const yellowInitPosLeft = getComputedStyle(yellowMeteor).left;
+let initTop, initLeft;
+
+const MeteorsObj = {
+  blueMeteor: {
+    topPos: getComputedStyle(blueMeteor).top,
+    leftPos: getComputedStyle(blueMeteor).left,
+  },
+  yellowMeteor: {
+    topPos: getComputedStyle(yellowMeteor).top,
+    leftPos: getComputedStyle(yellowMeteor).left,
+  },
+};
+
 let isHolding = false;
 
 document.addEventListener("mousedown", (e) => {
@@ -15,10 +24,10 @@ document.addEventListener("mousedown", (e) => {
 document.addEventListener("mouseup", (e) => {
   isHolding = false;
   setTimeout(() => {
-    blueMeteor.style.top = blueInitPosTop;
-    blueMeteor.style.left = blueInitPosLeft;
-    yellowMeteor.style.top = yellowInitPosTop;
-    yellowMeteor.style.left = yellowInitPosLeft;
+    blueMeteor.style.top = MeteorsObj.blueMeteor.topPos;
+    blueMeteor.style.left = MeteorsObj.blueMeteor.leftPos;
+    yellowMeteor.style.top = MeteorsObj.yellowMeteor.topPos;
+    yellowMeteor.style.left = MeteorsObj.yellowMeteor.leftPos;
   }, 400);
 });
 
