@@ -28,7 +28,7 @@ document.addEventListener("mouseup", (e) => {
     blueMeteor.style.left = MeteorsObj.blueMeteor.leftPos;
     yellowMeteor.style.top = MeteorsObj.yellowMeteor.topPos;
     yellowMeteor.style.left = MeteorsObj.yellowMeteor.leftPos;
-  }, 400);
+  }, 1000);
 });
 
 document.addEventListener("mousemove", (e) => {
@@ -41,8 +41,28 @@ document.addEventListener("mousemove", (e) => {
     parseInt(getComputedStyle(meteor).left) + e.movementX + "px";
 });
 
-document.addEventListener("mouseover", (e) => {
-  const tile = e.target.closest(".tile");
-  if (!tile) return;
-  console.log(tile);
+const firstTile = document.querySelector(".tile");
+document.addEventListener("mouseup", () => {
+  const meteorPos = meteorsEl[0].getBoundingClientRect();
+  const tilePos = firstTile.getBoundingClientRect();
+  if (
+    tilePos.x <= meteorPos.x &&
+    tilePos.x + tilePos.width - 60 >= meteorPos.x &&
+    tilePos.y <= meteorPos.y &&
+    tilePos.y + tilePos.height >= meteorPos.y
+  ) {
+    console.log(tilePos, meteorPos);
+    console.log("meteor");
+  }
 });
+
+// console.log(firstTile.getBoundingClientRect());
+
+// bottom: 695;
+// height: 200;
+// left: 146;
+// right: 346;
+// top: 495;
+// width: 200;
+// x: 146;
+// y: 495;
