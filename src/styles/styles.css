@@ -73,8 +73,8 @@ img {
 /* MAIN STYLING */
 /*************************************/
 .section-main {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr); */
   margin: 0 auto;
 }
 
@@ -125,7 +125,7 @@ img {
   font-size: 3rem;
   width: 20rem;
   min-height: 20rem;
-  border: 1px solid red;
+  border: 1px solid rgb(54, 48, 158);
 }
 
 .tile-text {
@@ -138,18 +138,27 @@ img {
   border-radius: 50%;
 }
 
-.meteor-yellow,
-.meteor-blue {
-  grid-row: 1;
-  margin-top: 4rem;
-}
-.meteor-blue {
-  grid-column: 3;
-}
+.yellow {
+  position: relative;
+  top: 15rem;
+  right: 10rem;
 
-.meteor-yellow {
-  grid-column: 1;
-  justify-self: end;
+  background-image: url("./../imgs/yellow-meteor.jfif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+.blue {
+  position: relative;
+  top: 21.4rem;
+  left: 60rem;
+
+  background-image: url("./../imgs/blue-meteor.jfif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
 }
 /*************************************/
 /* FOOTER STYLING */
