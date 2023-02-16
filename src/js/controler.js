@@ -42,9 +42,10 @@ document.addEventListener("mousemove", (e) => {
 });
 
 const firstTile = document.querySelector(".tile");
-document.addEventListener("mouseup", () => {
-  const meteorPos = meteorsEl[0].getBoundingClientRect();
-  const tilePos = firstTile.getBoundingClientRect();
+
+const targetTile = function (meteor, tile) {
+  const meteorPos = meteor.getBoundingClientRect();
+  const tilePos = tile.getBoundingClientRect();
   if (
     tilePos.x <= meteorPos.x &&
     tilePos.x + tilePos.width - 60 >= meteorPos.x &&
@@ -54,15 +55,9 @@ document.addEventListener("mouseup", () => {
     console.log(tilePos, meteorPos);
     console.log("meteor");
   }
+};
+
+document.addEventListener("mouseup", (e) => {
+  if (e.target === blueMeteor || e.target === yellowMeteor)
+    targetTile(e.target, firstTile);
 });
-
-// console.log(firstTile.getBoundingClientRect());
-
-// bottom: 695;
-// height: 200;
-// left: 146;
-// right: 346;
-// top: 495;
-// width: 200;
-// x: 146;
-// y: 495;
