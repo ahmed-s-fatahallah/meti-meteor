@@ -42,7 +42,7 @@ export const meteorsDroppedTiles = function (meteor) {
   return results;
 };
 
-export const moveMeteors = function (meteor, e) {
+export const moveMeteors = function (e, meteor) {
   meteor.style.top =
     parseInt(getComputedStyle(meteor).top) + e.movementY + "px";
   meteor.style.left =
@@ -57,10 +57,3 @@ export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
     yellowMeteor.style.left = meteorsPos.yellowMeteor.leftPos;
   }, 1000);
 };
-
-document.addEventListener("mouseup", (e) => {
-  const meteor = document.querySelector(".meteor");
-  if (e.target !== meteor) return;
-  const tiles = meteorsDroppedTiles(meteor);
-  tiles.forEach((t) => (t.innerHTML = "destroyed"));
-});
