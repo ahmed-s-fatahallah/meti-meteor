@@ -17,9 +17,12 @@ export const moveMouse = function (handler) {
   });
 };
 
-export const mouseUp = function (handler) {
-  document.addEventListener("mouseup", () => {
+export const mouseUp = function (handler, detectTile) {
+  document.addEventListener("mouseup", (e) => {
     isHolding = false;
     handler(dom.blueMeteor, dom.yellowMeteor);
+    if (e.target !== dom.blueMeteor && e.target !== dom.yellowMeteor) return;
+    const tiles = detectTile(e.target);
+    console.log(...tiles);
   });
 };
