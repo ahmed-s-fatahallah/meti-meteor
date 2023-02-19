@@ -1,5 +1,5 @@
 let meteorsPos;
-const meteorsInitPos = function (blueMeteor, yellowMeteor) {
+export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   const meteorsObj = {
     blueMeteor: {
       topPos: getComputedStyle(blueMeteor).top,
@@ -13,14 +13,43 @@ const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   meteorsPos = meteorsObj;
 };
 
-const moveMeteors = function (meteor, e) {
+export const meteorsDroppedTiles = function (meteor) {
+  meteorData = meteor.getBoundingClientRect();
+  const [topBoundryX, topBoundryY] = [
+    meteorData.left + meteorData.width / 2,
+    meteorData.top - 1,
+  ];
+  const [bottomBoundryX, bottomBoundryY] = [
+    meteorData.right - meteorData.width / 2,
+    meteorData.bottom,
+  ];
+  const [leftBoundryX, leftBoundryY] = [
+    meteorData.left - 1,
+    meteorData.bottom - meteorData.height / 2,
+  ];
+  const [rightBoundryX, rightBoundryY] = [
+    meteorData.right,
+    meteorData.bottom - meteorData.height / 2,
+  ];
+  const el1 = document.elementFromPoint(topBoundryX, topBoundryY);
+  const el2 = document.elementFromPoint(bottomBoundryX, bottomBoundryY);
+  const el3 = document.elementFromPoint(leftBoundryX, leftBoundryY);
+  const el4 = document.elementFromPoint(rightBoundryX, rightBoundryY);
+
+  const droppedZone = Array.from(new Set([el1, el2, el3, el4]));
+  const results = droppedZone.filter((el) => el.classList[0] === "tile");
+  if (results.length === 0) return;
+  return results;
+};
+
+export const moveMeteors = function (meteor, e) {
   meteor.style.top =
     parseInt(getComputedStyle(meteor).top) + e.movementY + "px";
   meteor.style.left =
     parseInt(getComputedStyle(meteor).left) + e.movementX + "px";
 };
 
-const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
+export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
   setTimeout(() => {
     blueMeteor.style.top = meteorsPos.blueMeteor.topPos;
     blueMeteor.style.left = meteorsPos.blueMeteor.leftPos;
@@ -29,18 +58,9 @@ const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
   }, 1000);
 };
 
-const targetTile = function (meteor, tile) {
-  const meteorPos = meteor.getBoundingClientRect();
-  const tilePos = tile.getBoundingClientRect();
-  if (
-    tilePos.x <= meteorPos.x &&
-    tilePos.x + tilePos.width - 60 >= meteorPos.x &&
-    tilePos.y <= meteorPos.y &&
-    tilePos.y + tilePos.height >= meteorPos.y
-  ) {
-    console.log(tilePos, meteorPos);
-    console.log("dropped");
-  }
-};
-
-export { meteorsInitPos, moveMeteors, restoreMeteorInitPos, targetTile };
+document.addEventListener("mouseup", (e) => {
+  const meteor = document.querySelector(".meteor");
+  if (e.target !== meteor) return;
+  const tiles = meteorsDroppedTiles(meteor);
+  tiles.forEach((t) => (t.innerHTML = "destroyed"));
+});
