@@ -29,12 +29,14 @@ export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
   }, 3000);
 };
 
-export const meteorsDroppedTiles = function (meteor) {
+export const meteorsDroppedTiles = function (meteor, yellowInner) {
   let tilesHit;
   meteorData = meteor.getBoundingClientRect();
+  const innerData = yellowInner.getBoundingClientRect();
 
   const sidesCoordinatesArry = sidesCoordinates(meteorData);
   const angleCoordinatesArry = anglesCoordinates(meteorData);
+  const innerYellowCoordinatesArry = innerYellowCoordinates(innerData);
   const center = centerCoordinates(meteorData);
   const middleHit = document
     .elementsFromPoint(...center)
@@ -47,11 +49,12 @@ export const meteorsDroppedTiles = function (meteor) {
 
     tilesHit = sidesHit.concat(middleHit);
   } else {
-    const outerHit = sidesCoordinatesArry
+    const outerInnerHit = sidesCoordinatesArry
       .concat(angleCoordinatesArry)
+      .concat(innerYellowCoordinatesArry)
       .map((c) => document.elementFromPoint(...c))
       .filter((el) => el !== null && el.classList[0] === "tile");
-    tilesHit = outerHit.concat(middleHit);
+    tilesHit = outerInnerHit.concat(middleHit);
   }
 
   const droppedZone = Array.from(new Set(Array.from(tilesHit)));
@@ -117,4 +120,30 @@ const centerCoordinates = function (meteorData) {
   ];
 
   return [centerX, centerY];
+};
+
+const innerYellowCoordinates = function (innerData) {
+  const [topInnerBoundryX, topInnerBoundryY] = [
+    innerData.left + innerData.width / 2,
+    innerData.top - 1,
+  ];
+  const [bottomInnerBoundryX, bottomInnerBoundryY] = [
+    innerData.right - innerData.width / 2,
+    innerData.bottom,
+  ];
+  const [leftInnerBoundryX, leftInnerBoundryY] = [
+    innerData.left - 1,
+    innerData.bottom - innerData.height / 2,
+  ];
+  const [rightInnerBoundryX, rightInnerBoundryY] = [
+    innerData.right,
+    innerData.bottom - innerData.height / 2,
+  ];
+
+  return [
+    [topInnerBoundryX, topInnerBoundryY],
+    [bottomInnerBoundryX, bottomInnerBoundryY],
+    [leftInnerBoundryX, leftInnerBoundryY],
+    [rightInnerBoundryX, rightInnerBoundryY],
+  ];
 };
