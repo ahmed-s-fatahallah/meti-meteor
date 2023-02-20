@@ -100,17 +100,19 @@ img {
 
 .tile-text {
   transform: rotate(-45deg);
+  z-index: -1;
 }
 
 .meteor {
   width: 6rem;
   aspect-ratio: 1/1;
   border-radius: 50%;
+  z-index: 2;
 }
 
 .yellow {
   position: absolute;
-  width: 35rem;
+  width: 50rem;
   top: -3%;
   left: 0;
 
@@ -118,7 +120,6 @@ img {
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(235, 231, 38);
-  z-index: 1;
 }
 .yellow-img {
   width: 20%;
@@ -130,7 +131,6 @@ img {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 1;
 }
 
 .blue {
@@ -142,7 +142,6 @@ img {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 1;
 }
 /*************************************/
 /* FOOTER STYLING */
