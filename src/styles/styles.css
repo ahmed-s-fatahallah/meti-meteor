@@ -82,7 +82,7 @@ img {
 .tiles-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin: 25rem auto;
+  margin: 25rem 0 25rem auto;
 
   max-width: 60rem;
   transform: rotate(45deg);
@@ -101,6 +101,7 @@ img {
 .tile-text {
   transform: rotate(-45deg);
   z-index: -1;
+  pointer-events: none;
 }
 
 .meteor {
@@ -121,7 +122,7 @@ img {
   align-items: center;
   border: 1px solid rgb(235, 231, 38);
 }
-.yellow-img {
+.yellow-inner {
   width: 20%;
   border-radius: 50%;
   aspect-ratio: 1/1;
@@ -135,8 +136,8 @@ img {
 
 .blue {
   position: absolute;
-  top: 10%;
-  right: 10%;
+  left: 10%;
+  bottom: 30%;
 
   background-image: url("./../imgs/blue-meteor.jfif");
   background-position: center;
