@@ -26,10 +26,8 @@ img {
 .container {
   max-width: 80%;
   margin: 1rem auto;
-  /* border: 1px solid black; */
   padding: 1rem 4rem;
   border-radius: 1.2rem;
-
   display: flex;
   justify-content: space-between;
 }
@@ -72,59 +70,30 @@ img {
 /*************************************/
 /* MAIN STYLING */
 /*************************************/
+.main {
+  display: block;
+  position: relative;
+}
 .section-main {
   margin: 0 auto;
 }
 
 .tiles-container {
   display: grid;
-  grid-template-areas:
-    "1 1 1"
-    "2 2 2"
-    "3 3 3";
-
+  grid-template-columns: repeat(3, 1fr);
   margin: 25rem auto;
+  max-width: 60rem;
   transform: rotate(45deg);
   border: 1px solid rgb(54, 48, 158);
-}
-
-.one {
-  grid-area: 1;
-}
-.two {
-  grid-area: 1;
-}
-.three {
-  grid-area: 1;
-}
-.four {
-  grid-area: 2;
-}
-.five {
-  grid-area: 2;
-}
-.six {
-  grid-area: 2;
-}
-.seven {
-  grid-area: 3;
-}
-.eight {
-  grid-area: 3;
-}
-.nine {
-  grid-area: 3;
 }
 
 .tile {
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 3rem;
-  width: 20rem;
-  min-height: 20rem;
   border: 1px solid rgb(54, 48, 158);
+  aspect-ratio: 1/1;
 }
 
 .tile-text {
@@ -133,14 +102,14 @@ img {
 
 .meteor {
   width: 6rem;
-  height: 6rem;
+  aspect-ratio: 1/1;
   border-radius: 50%;
 }
 
 .yellow {
-  position: relative;
-  top: 15rem;
-  right: 10rem;
+  position: absolute;
+  top: 10%;
+  left: 10%;
 
   background-image: url("./../imgs/yellow-meteor.jfif");
   background-position: center;
@@ -149,9 +118,9 @@ img {
   z-index: 1;
 }
 .blue {
-  position: relative;
-  top: 21.4rem;
-  left: 60rem;
+  position: absolute;
+  top: 10%;
+  right: 10%;
 
   background-image: url("./../imgs/blue-meteor.jfif");
   background-position: center;
