@@ -73,6 +73,7 @@ img {
 .main {
   display: block;
   position: relative;
+  margin-top: 10rem;
 }
 .section-main {
   margin: 0 auto;
@@ -82,6 +83,7 @@ img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 25rem auto;
+
   max-width: 60rem;
   transform: rotate(45deg);
   border: 1px solid rgb(54, 48, 158);
@@ -108,8 +110,21 @@ img {
 
 .yellow {
   position: absolute;
-  top: 10%;
-  left: 10%;
+  width: 35rem;
+  top: -3%;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(235, 231, 38);
+  z-index: 1;
+}
+.yellow-img {
+  width: 20%;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  pointer-events: none;
 
   background-image: url("./../imgs/yellow-meteor.jfif");
   background-position: center;
@@ -117,6 +132,7 @@ img {
   background-repeat: no-repeat;
   z-index: 1;
 }
+
 .blue {
   position: absolute;
   top: 10%;
