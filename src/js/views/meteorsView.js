@@ -22,7 +22,7 @@ export const mouseUp = function (handler, detectTile) {
     isHolding = false;
     handler(dom.blueMeteor, dom.yellowMeteor);
     if (e.target !== dom.blueMeteor && e.target !== dom.yellowMeteor) return;
-    const tiles = detectTile(e.target);
+    const tiles = detectTile(e.target, dom.innerYellowMeteor);
     console.log(...tiles);
   });
 };
