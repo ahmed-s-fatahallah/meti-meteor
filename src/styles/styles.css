@@ -76,18 +76,19 @@ img {
   margin-top: 10rem;
 }
 
-.turns.container {
+.turns {
   margin: 10rem;
   justify-content: center;
   gap: 20rem;
   align-items: center;
+  max-width: 100%;
 }
 .turn,
 .meteors-num {
+  display: flex;
   font-size: 3rem;
   padding: 2rem 6rem;
   border: 3px dashed rgb(54, 48, 158);
-  flex-shrink: 0;
   letter-spacing: 1px;
 }
 .section-main {
