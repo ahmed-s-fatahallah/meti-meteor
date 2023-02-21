@@ -1,4 +1,6 @@
-let meteorsPos;
+let meteorsPos, meteorsNum;
+// export let requiredMeteors = Math.trunc(Math.random() * (4 - 2 + 1) + 2);
+export let turnsCount = 2;
 export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   const meteorsObj = {
     blueMeteor: {
@@ -26,7 +28,7 @@ export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
     blueMeteor.style.left = meteorsPos.blueMeteor.leftPos;
     yellowMeteor.style.top = meteorsPos.yellowMeteor.topPos;
     yellowMeteor.style.left = meteorsPos.yellowMeteor.leftPos;
-  }, 3000);
+  }, 1000);
 };
 
 export const meteorsDroppedTiles = function (meteor, yellowInner) {
@@ -89,20 +91,20 @@ const sidesCoordinates = function (meteorData) {
 
 const anglesCoordinates = function (meteorData) {
   const [leftTopCornerX, leftTopCornerY] = [
-    meteorData.left + 72,
-    meteorData.top + 72,
+    meteorData.left + 71,
+    meteorData.top + 71,
   ];
   const [rightTopCornerX, rightTopCornerY] = [
-    meteorData.right - 72,
-    meteorData.top + 72,
+    meteorData.right - 71,
+    meteorData.top + 71,
   ];
   const [leftBottomCornerX, leftBottomCornerY] = [
-    meteorData.left + 72,
-    meteorData.bottom - 72,
+    meteorData.left + 71,
+    meteorData.bottom - 71,
   ];
   const [rightBottomCornerX, rightBottomCornerY] = [
-    meteorData.right - 72,
-    meteorData.bottom - 72,
+    meteorData.right - 71,
+    meteorData.bottom - 71,
   ];
 
   return [
@@ -146,4 +148,26 @@ const innerYellowCoordinates = function (innerData) {
     [leftInnerBoundryX, leftInnerBoundryY],
     [rightInnerBoundryX, rightInnerBoundryY],
   ];
+};
+const generateMeteorsNum = function () {
+  const requiredMeteors = Math.trunc(Math.random() * (4 - 2 + 1) + 2);
+  return requiredMeteors;
+};
+
+meteorsNum = generateMeteorsNum();
+export const turnManager = function (counter) {
+  if (meteorsNum === counter) {
+    turnsCount--;
+    meteorsNum = generateMeteorsNum();
+    return {
+      isDone: true,
+      turnsCount,
+      meteorsNum,
+    };
+  }
+  return {
+    isDone: false,
+    turnsCount,
+    meteorsNum,
+  };
 };
