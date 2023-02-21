@@ -75,6 +75,21 @@ img {
   position: relative;
   margin-top: 10rem;
 }
+
+.turns.container {
+  margin: 10rem;
+  justify-content: center;
+  gap: 20rem;
+  align-items: center;
+}
+.turn,
+.meteors-num {
+  font-size: 3rem;
+  padding: 2rem 6rem;
+  border: 3px dashed rgb(54, 48, 158);
+  flex-shrink: 0;
+  letter-spacing: 1px;
+}
 .section-main {
   margin: 0 auto;
 }
@@ -86,7 +101,6 @@ img {
 
   max-width: 60rem;
   transform: rotate(45deg);
-  border: 1px solid rgb(54, 48, 158);
 }
 
 .tile {
@@ -114,7 +128,7 @@ img {
 .yellow {
   position: absolute;
   width: 50rem;
-  top: -3%;
+  top: 20%;
   left: 0;
 
   display: flex;
