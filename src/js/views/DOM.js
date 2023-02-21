@@ -4,6 +4,8 @@ const DOM = {
   yellowMeteor: document.querySelector(".yellow"),
   innerYellowMeteor: document.querySelector(".yellow-inner"),
   blueMeteor: document.querySelector(".blue"),
+  meteorsCounter: document.querySelector(".meteors-num"),
+  turnsCounter: document.querySelector(".turn"),
 };
 
 export default DOM;
