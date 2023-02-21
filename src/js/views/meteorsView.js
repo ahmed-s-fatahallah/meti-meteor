@@ -5,7 +5,7 @@ import * as turn from "./turnsView";
 
 export let isHolding;
 export let counter = 0;
-export let markUp = "";
+let tileHealth = 3;
 
 export const mouseDown = function () {
   document.addEventListener("mousedown", (e) => {
@@ -31,14 +31,16 @@ export const mouseUp = function (restorePos, detectTile, turnManager) {
     restorePos(dom.blueMeteor, dom.yellowMeteor);
     if (e.target !== dom.blueMeteor && e.target !== dom.yellowMeteor) return;
     const tiles = detectTile(e.target, dom.innerYellowMeteor);
+
     if (!tiles) return;
-    tilesStyling(tiles);
+    let health = tilesStyling(tiles, tileHealth);
+    tileHealth = health;
+    console.log(tileHealth);
     counter++;
     let manager = turnManager(counter);
     if (!manager) return;
     let { isDone, turnsCount, meteorsNum } = manager;
     if (isDone) counter = 0;
     turn.TurnsCount(turnsCount, meteorsNum, counter);
-    console.log(`counter ${counter}`);
   });
 };
