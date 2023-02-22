@@ -12,7 +12,7 @@ const Init = function () {
     model.restoreMeteorInitPos,
     model.meteorsDroppedTiles,
     model.turnManager,
-    model.winConditoin
+    model.loseConditoin
   );
   turns.requiredMeteors(model.meteorsNum, model.turnsCount);
 };

@@ -173,11 +173,11 @@ export const turnManager = function (counter) {
   };
 };
 
-export const winConditoin = function (tilesContainer, middleTile) {
+export const loseConditoin = function (tilesContainer, middleTile) {
   let counter = 0;
-  if (middleTile.classList.contains("destroyed")) prompt("Middle Tile Lost");
+  if (middleTile.classList.contains("destroyed")) return true;
   tilesContainer.forEach((tile) => {
     if (tile.classList.contains("destroyed")) counter++;
   });
-  if (counter >= 4) prompt("YOU LOST");
+  if (counter >= 4) return true;
 };
