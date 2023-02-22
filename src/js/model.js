@@ -1,6 +1,6 @@
 export let meteorsPos, meteorsNum;
 
-export let turnsCount = 2;
+export let turnsCount = 5;
 export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   const meteorsObj = {
     blueMeteor: {
@@ -159,6 +159,7 @@ export const turnManager = function (counter) {
   if (meteorsNum === counter) {
     turnsCount--;
     meteorsNum = generateMeteorsNum();
+    if (turnsCount === 3) meteorsNum = 1;
     return {
       isDone: true,
       turnsCount,
@@ -172,11 +173,11 @@ export const turnManager = function (counter) {
   };
 };
 
-export const winConditoin = function (tilesContainer) {
+export const winConditoin = function (tilesContainer, middleTile) {
   let counter = 0;
+  if (middleTile.classList.contains("destroyed")) prompt("Middle Tile Lost");
   tilesContainer.forEach((tile) => {
     if (tile.classList.contains("destroyed")) counter++;
   });
-  console.log(counter);
   if (counter >= 4) prompt("YOU LOST");
 };
