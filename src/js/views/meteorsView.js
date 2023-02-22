@@ -1,6 +1,7 @@
 import dom from "./DOM";
 import { tilesStyling } from "./tilesView";
 import * as turn from "./turnsView";
+import * as popUp from "./popUpView";
 
 export let isHolding;
 export let counter = 0;
@@ -26,7 +27,7 @@ export const mouseUp = function (
   restorePos,
   detectTile,
   turnManager,
-  winConditon
+  loseConditon
 ) {
   document.addEventListener("mouseup", (e) => {
     e.preventDefault();
@@ -38,7 +39,7 @@ export const mouseUp = function (
     tilesStyling(tiles, e.target);
     counter++;
     let manager = turnManager(counter);
-    winConditon(dom.tilesArry, dom.middleTile);
+    const lost = loseConditon(dom.tilesArry, dom.middleTile);
     if (!manager) return;
     let { isDone, turnsCount, meteorsNum } = manager;
     dom.yellowMeteor.style.display = "none";
@@ -49,5 +50,6 @@ export const mouseUp = function (
     }
     if (isDone) counter = 0;
     turn.TurnsCount(turnsCount, meteorsNum, counter);
+    popUp.popUpStyling(lost, turnsCount);
   });
 };
