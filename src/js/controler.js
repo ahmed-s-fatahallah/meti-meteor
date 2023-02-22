@@ -14,7 +14,7 @@ const Init = function () {
     model.turnManager,
     model.winConditoin
   );
-  turns.requiredMeteors(model.meteorsNum);
+  turns.requiredMeteors(model.meteorsNum, model.turnsCount);
 };
 
 Init();
