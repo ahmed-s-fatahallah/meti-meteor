@@ -1,12 +1,15 @@
 import dom from "./DOM";
 
-// export const renderTurnsCounter = function (html) {
-//   dom.mainSectionEl.insertAdjacentHTML("afterbegin", html);
-// };
+let meteorsNum;
 
 export const TurnsCount = function (turnsCount, requiredMeteors, counter) {
-  dom.turnsCounter.innerHTML = `${
-    turnsCount <= 0 ? "GAME OVER" : `Turns remaining: ${turnsCount}`
+  dom.turnsCounter.textContent = `${
+    turnsCount <= 0 ? prompt("GAME OVER") : `Turns remaining: ${turnsCount}`
   }`;
-  dom.meteorsCounter.innerHTML = `Meteors count: ${counter}/ ${requiredMeteors}`;
+  dom.meteorsCounter.textContent = `Meteors count: ${counter}/ ${requiredMeteors}`;
+};
+
+export const requiredMeteors = function (generatedMeteorsNum) {
+  meteorsNum = generatedMeteorsNum;
+  dom.meteorsCounter.textContent = `Meteors count: 0/ ${meteorsNum}`;
 };
