@@ -7,6 +7,8 @@ const DOM = {
   blueMeteor: document.querySelector(".blue"),
   meteorsCounter: document.querySelector(".meteors-num"),
   turnsCounter: document.querySelector(".turn"),
+  popUp: document.querySelector(".pop-up"),
+  restartBtn: document.querySelector(".restart"),
 };
 
 export default DOM;
