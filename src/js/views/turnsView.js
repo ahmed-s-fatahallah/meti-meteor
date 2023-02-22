@@ -4,7 +4,7 @@ let meteorsNum;
 
 export const TurnsCount = function (turnsCount, requiredMeteors, counter) {
   dom.turnsCounter.textContent = `${
-    turnsCount <= 0 ? prompt("GAME OVER") : `Turns remaining: ${turnsCount}`
+    turnsCount <= 0 ? "GAME OVER" : `Turns remaining: ${turnsCount}`
   }`;
   dom.meteorsCounter.textContent = `Meteors count: ${counter}/ ${requiredMeteors}`;
 };
