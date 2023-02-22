@@ -11,8 +11,10 @@ const Init = function () {
   meteor.mouseUp(
     model.restoreMeteorInitPos,
     model.meteorsDroppedTiles,
-    model.turnManager
+    model.turnManager,
+    model.winConditoin
   );
+  turns.requiredMeteors(model.meteorsNum);
 };
 
 Init();
