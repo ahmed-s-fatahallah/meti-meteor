@@ -1,5 +1,5 @@
-let meteorsPos, meteorsNum;
-// export let requiredMeteors = Math.trunc(Math.random() * (4 - 2 + 1) + 2);
+export let meteorsPos, meteorsNum;
+
 export let turnsCount = 2;
 export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   const meteorsObj = {
@@ -170,4 +170,13 @@ export const turnManager = function (counter) {
     turnsCount,
     meteorsNum,
   };
+};
+
+export const winConditoin = function (tilesContainer) {
+  let counter = 0;
+  tilesContainer.forEach((tile) => {
+    if (tile.classList.contains("destroyed")) counter++;
+  });
+  console.log(counter);
+  if (counter >= 4) prompt("YOU LOST");
 };
