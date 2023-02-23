@@ -77,11 +77,11 @@ img {
 }
 
 .turns {
-  margin: 10rem;
+  display: flex;
   justify-content: center;
-  gap: 20rem;
-  align-items: center;
-  max-width: 100%;
+  flex-direction: column;
+
+  gap: 5rem;
 }
 .turn,
 .meteors-num {
@@ -90,19 +90,23 @@ img {
   padding: 2rem 6rem;
   border: 3px dashed rgb(54, 48, 158);
   letter-spacing: 1px;
+  border-radius: 1.2rem;
 }
 .section-main {
-  margin: 0 auto;
+  display: flex;
+  gap: 10rem;
+  align-items: flex-start;
 }
 
 .tiles-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin: 25rem 0 25rem auto;
+  margin: 12rem 0;
 
-  max-width: 60rem;
-  transform: rotate(45deg);
+  min-width: 60rem;
   border: 1px solid rgb(54, 48, 158);
+
+  transform: rotate(45deg);
 }
 
 .tile {
@@ -131,8 +135,8 @@ img {
 .yellow {
   position: absolute;
   width: 50rem;
-  top: 20%;
-  left: 0;
+  top: 38%;
+  right: 72%;
 
   display: none;
   justify-content: center;
