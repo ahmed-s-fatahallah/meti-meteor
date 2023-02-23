@@ -125,6 +125,7 @@ img {
   aspect-ratio: 1/1;
   border-radius: 50%;
   z-index: 2;
+  cursor: grab;
 }
 
 .yellow {
@@ -200,15 +201,21 @@ img {
   font-size: 2rem;
   font-weight: 600;
   border-radius: 1.2rem;
-  border-color: rgba(255, 0, 0, 0.822);
+  border-color: rgba(255, 0, 0, 0);
 
   color: rgb(231, 228, 239);
   background-color: rgba(255, 0, 0, 0.822);
   cursor: pointer;
+  transition: all 0.1s ease;
+  box-shadow: 0 5px 5px rgb(0, 0, 0, 0.7);
 }
 .restart:focus {
   outline: none;
   box-shadow: 1px 1px 5px 5px rgba(54, 48, 158, 0.5);
+}
+.restart:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 5px rgb(0, 0, 0, 0.7);
 }
 
 /*************************************/

@@ -8,7 +8,8 @@ export const popUpStyling = function (loseCondition, turnsCount) {
   if (turnsCount <= 0 && !loseCondition) {
     dom.popUp.showModal();
     dom.popUp.firstChild.textContent = "YOU WON 🎉🎉";
-    dom.restartBtn.style.backgroundColor = "green";
+    dom.restartBtn.style.backgroundColor = "#009100";
+    dom.restartBtn.style.borderColor = "rgba(255, 0, 0, 0)";
   }
   dom.restartBtn.addEventListener("click", (e) => {
     e.preventDefault();
