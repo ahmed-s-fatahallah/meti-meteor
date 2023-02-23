@@ -4,7 +4,7 @@ import * as turn from "./turnsView";
 import * as popUp from "./popUpView";
 
 export let isHolding;
-export let counter = 0;
+export let meteorsCounter = 1;
 
 export const mouseDown = function () {
   document.addEventListener("mousedown", (e) => {
@@ -37,19 +37,19 @@ export const mouseUp = function (
     const tiles = detectTile(e.target, dom.innerYellowMeteor);
     if (!tiles) return;
     tilesStyling(tiles, e.target);
-    counter++;
-    let manager = turnManager(counter);
+
+    let manager = turnManager(meteorsCounter);
     const lost = loseConditon(dom.tilesArry, dom.middleTile);
     if (!manager) return;
-    let { isDone, turnsCount, meteorsNum } = manager;
+    let { counter, turnsCount, meteorsNum } = manager;
+    meteorsCounter = counter;
     dom.yellowMeteor.style.display = "none";
     dom.blueMeteor.style.display = "block";
     if (turnsCount === 3) {
       dom.yellowMeteor.style.display = "flex";
       dom.blueMeteor.style.display = "none";
     }
-    if (isDone) counter = 0;
-    turn.TurnsCount(turnsCount, meteorsNum, counter);
+    turn.TurnsCount(turnsCount, meteorsNum, meteorsCounter);
     popUp.popUpStyling(lost, turnsCount);
   });
 };

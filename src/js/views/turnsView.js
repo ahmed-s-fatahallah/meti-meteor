@@ -9,8 +9,12 @@ export const TurnsCount = function (turnsCount, requiredMeteors, counter) {
   dom.meteorsCounter.textContent = `Meteors count: ${counter}/ ${requiredMeteors}`;
 };
 
-export const requiredMeteors = function (generatedMeteorsNum, turnsCount) {
+export const requiredMeteors = function (
+  generatedMeteorsNum,
+  turnsCount,
+  counter
+) {
   meteorsNum = generatedMeteorsNum;
-  dom.meteorsCounter.textContent = `Meteors count: 0/ ${meteorsNum}`;
+  dom.meteorsCounter.textContent = `Meteors count: ${counter}/ ${meteorsNum}`;
   dom.turnsCounter.textContent = `Turns remaining: ${turnsCount}`;
 };
