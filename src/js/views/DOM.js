@@ -9,6 +9,7 @@ const DOM = {
   turnsCounter: document.querySelector(".turn"),
   popUp: document.querySelector(".pop-up"),
   restartBtn: document.querySelector(".restart"),
+  copyRight: document.querySelector(".year"),
 };
 
 export default DOM;

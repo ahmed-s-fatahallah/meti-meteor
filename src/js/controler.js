@@ -1,10 +1,12 @@
+import dom from "./views/DOM";
 import * as model from "./model";
 import * as meteor from "./views/meteorsView";
 import * as tiles from "./views/tilesView";
 import * as turns from "./views/turnsView";
-import dom from "./views/DOM";
+import * as popUp from "./views/popUpView";
+import { renderCurrentYear } from "./views/copyRightView";
 
-const Init = function () {
+const init = function () {
   model.meteorsInitPos(dom.blueMeteor, dom.yellowMeteor);
   meteor.mouseDown();
   meteor.moveMouse(model.moveMeteors);
@@ -19,6 +21,7 @@ const Init = function () {
     model.turnsCount,
     meteor.meteorsCounter
   );
+  renderCurrentYear(model.getYear);
 };
 
-Init();
+init();
