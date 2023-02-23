@@ -23,11 +23,15 @@ export const moveMeteors = function (e, meteor) {
 };
 
 export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
+  blueMeteor.style.pointerEvents = "none";
+  yellowMeteor.style.pointerEvents = "none";
   setTimeout(() => {
     blueMeteor.style.top = meteorsPos.blueMeteor.topPos;
     blueMeteor.style.left = meteorsPos.blueMeteor.leftPos;
     yellowMeteor.style.top = meteorsPos.yellowMeteor.topPos;
     yellowMeteor.style.left = meteorsPos.yellowMeteor.leftPos;
+    blueMeteor.style.pointerEvents = "auto";
+    yellowMeteor.style.pointerEvents = "auto";
   }, 1000);
 };
 
@@ -156,18 +160,20 @@ const generateMeteorsNum = function () {
 
 meteorsNum = generateMeteorsNum();
 export const turnManager = function (counter) {
-  if (meteorsNum === counter) {
+  counter++;
+  if (meteorsNum < counter) {
     turnsCount--;
+    counter = 1;
     meteorsNum = generateMeteorsNum();
     if (turnsCount === 3) meteorsNum = 1;
     return {
-      isDone: true,
+      counter,
       turnsCount,
       meteorsNum,
     };
   }
   return {
-    isDone: false,
+    counter,
     turnsCount,
     meteorsNum,
   };
