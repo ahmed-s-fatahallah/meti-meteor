@@ -48,10 +48,10 @@ export const meteorsDroppedTiles = function (meteor, yellowInner) {
     .elementsFromPoint(...center)
     .filter((el) => el.classList[0] === "tile");
   if (middleHit.length === 0) return;
-  if (Array.from(meteor.classList).includes("blue")) {
-    const sidesHit = sidesCoordinatesArry.map((c) =>
-      document.elementFromPoint(...c)
-    );
+  if (meteor.classList.contains("blue")) {
+    const sidesHit = sidesCoordinatesArry
+      .map((c) => document.elementFromPoint(...c))
+      .filter((el) => el.classList.contains("tile"));
 
     tilesHit = sidesHit.concat(middleHit);
   } else {
@@ -186,4 +186,9 @@ export const loseConditoin = function (tilesContainer, middleTile) {
     if (tile.classList.contains("destroyed")) counter++;
   });
   if (counter >= 4) return true;
+};
+
+export const getYear = function () {
+  const year = new Date().getFullYear();
+  return year;
 };
