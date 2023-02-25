@@ -214,7 +214,7 @@ export const isBtnVisible = function (gameSection, topBtn) {
   observer.observe(gameSection);
 };
 
-export const restart = function (tiles, blueMeteor, yellowMeteor) {
+export const restart = function (tiles) {
   turnsCount = 5;
   meteorsNum = generateMeteorsNum();
   meteorsCounter = 1;
@@ -226,8 +226,7 @@ export const restart = function (tiles, blueMeteor, yellowMeteor) {
     if (tile.classList.contains("middle"))
       tile.firstElementChild.textContent = 4;
   });
-  blueMeteor.style.display = "block";
-  yellowMeteor.style.display = "none";
+
   return {
     turnsCount,
     meteorsNum,

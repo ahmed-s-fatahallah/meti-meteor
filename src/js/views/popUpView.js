@@ -18,11 +18,9 @@ export const restart = function (handler) {
     e.preventDefault();
     dom.popUp.close();
 
-    const { turnsCount, meteorsNum, meteorsCounter } = handler(
-      dom.tilesArry,
-      dom.blueMeteor,
-      dom.yellowMeteor
-    );
+    const { turnsCount, meteorsNum, meteorsCounter } = handler(dom.tilesArry);
+    dom.blueMeteor.style.display = "block";
+    dom.yellowMeteor.style.display = "none";
     turn.requiredMeteors(meteorsNum, turnsCount, meteorsCounter);
     turn.TurnsCount(turnsCount, meteorsNum, meteorsCounter);
   });
