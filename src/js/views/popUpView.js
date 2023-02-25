@@ -1,4 +1,5 @@
 import dom from "./DOM";
+import * as turn from "./turnsView";
 
 export const popUpStyling = function (loseCondition, turnsCount) {
   if (loseCondition) {
@@ -12,8 +13,17 @@ export const popUpStyling = function (loseCondition, turnsCount) {
     dom.popUp.showModal();
   }
 };
-export const restart = function () {
-  dom.restartBtn.addEventListener("click", () => {
+export const restart = function (handler) {
+  dom.restartBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     dom.popUp.close();
+
+    const { turnsCount, meteorsNum, meteorsCounter } = handler(
+      dom.tilesArry,
+      dom.blueMeteor,
+      dom.yellowMeteor
+    );
+    turn.requiredMeteors(meteorsNum, turnsCount, meteorsCounter);
+    turn.TurnsCount(turnsCount, meteorsNum, meteorsCounter);
   });
 };

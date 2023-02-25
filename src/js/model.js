@@ -1,4 +1,5 @@
 export let meteorsPos, meteorsNum;
+export let meteorsCounter = 1;
 
 export let turnsCount = 5;
 export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
@@ -159,21 +160,21 @@ const generateMeteorsNum = function () {
 };
 
 meteorsNum = generateMeteorsNum();
-export const turnManager = function (counter) {
-  counter++;
-  if (meteorsNum < counter) {
+export const turnManager = function () {
+  meteorsCounter++;
+  if (meteorsCounter > meteorsNum) {
     turnsCount--;
-    counter = 1;
+    meteorsCounter = 1;
     meteorsNum = generateMeteorsNum();
     if (turnsCount === 3) meteorsNum = 1;
     return {
-      counter,
+      meteorsCounter,
       turnsCount,
       meteorsNum,
     };
   }
   return {
-    counter,
+    meteorsCounter,
     turnsCount,
     meteorsNum,
   };
@@ -211,4 +212,25 @@ export const isBtnVisible = function (gameSection, topBtn) {
   );
 
   observer.observe(gameSection);
+};
+
+export const restart = function (tiles, blueMeteor, yellowMeteor) {
+  turnsCount = 5;
+  meteorsNum = generateMeteorsNum();
+  meteorsCounter = 1;
+  tiles.forEach((tile) => {
+    if (tile.classList.contains("destroyed"))
+      tile.classList.remove("destroyed");
+    tile.firstElementChild.textContent = 3;
+    tile.style.borderColor = "rgb(54, 48, 158)";
+    if (tile.classList.contains("middle"))
+      tile.firstElementChild.textContent = 4;
+  });
+  blueMeteor.style.display = "block";
+  yellowMeteor.style.display = "none";
+  return {
+    turnsCount,
+    meteorsNum,
+    meteorsCounter,
+  };
 };

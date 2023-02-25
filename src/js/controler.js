@@ -21,12 +21,12 @@ const init = function () {
   turns.requiredMeteors(
     model.meteorsNum,
     model.turnsCount,
-    game.meteorsCounter
+    model.meteorsCounter
   );
-  // popUp.restart();
   start.startPlaying();
   game.backToTop();
   model.isBtnVisible(dom.gameSectionEl, dom.topBtn);
+  popUp.restart(model.restart);
 };
 
 init();

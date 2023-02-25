@@ -4,7 +4,6 @@ import * as turn from "./turnsView";
 import * as popUp from "./popUpView";
 
 export let isHolding;
-export let meteorsCounter = 1;
 
 export const mouseDown = function () {
   document.addEventListener("mousedown", (e) => {
@@ -38,11 +37,10 @@ export const mouseUp = function (
     if (!tiles) return;
     tilesStyling(tiles, e.target);
 
-    let manager = turnManager(meteorsCounter);
+    let manager = turnManager();
     const lost = loseConditon(dom.tilesArry, dom.middleTile);
     if (!manager) return;
-    let { counter, turnsCount, meteorsNum } = manager;
-    meteorsCounter = counter;
+    let { meteorsCounter, turnsCount, meteorsNum } = manager;
     dom.yellowMeteor.style.display = "none";
     dom.blueMeteor.style.display = "block";
     if (turnsCount === 3) {
