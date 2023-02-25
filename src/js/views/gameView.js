@@ -53,3 +53,10 @@ export const mouseUp = function (
     popUp.popUpStyling(lost, turnsCount);
   });
 };
+
+export const backToTop = function () {
+  dom.topBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+  });
+};
