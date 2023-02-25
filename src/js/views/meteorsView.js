@@ -32,8 +32,8 @@ export const mouseUp = function (
   document.addEventListener("mouseup", (e) => {
     e.preventDefault();
     isHolding = false;
-    restorePos(dom.blueMeteor, dom.yellowMeteor);
     if (e.target !== dom.blueMeteor && e.target !== dom.yellowMeteor) return;
+    restorePos(dom.blueMeteor, dom.yellowMeteor);
     const tiles = detectTile(e.target, dom.innerYellowMeteor);
     if (!tiles) return;
     tilesStyling(tiles, e.target);
