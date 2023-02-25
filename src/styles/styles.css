@@ -17,6 +17,8 @@ html {
   background-color: rgb(32, 33, 36);
   color: rgb(231, 228, 239);
   font-family: "Roboto", sans-serif;
+
+  scroll-behavior: smooth;
 }
 
 img {
@@ -36,20 +38,12 @@ img {
 /* HEADER STYLING */
 /*************************************/
 .header {
-  justify-content: flex-start;
   background-color: rgb(54, 48, 158);
-}
-.logo-link {
-  display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 2rem;
 
   border-radius: 1.2rem;
-}
-.logo-link:link,
-.logo-link:visited {
-  text-decoration: none;
-  color: rgb(231, 228, 239);
 }
 
 .logo-img {
@@ -61,6 +55,7 @@ img {
   font-size: 3rem;
   letter-spacing: 0.1rem;
   font-weight: 500;
+  color: rgb(231, 228, 239);
   transition: all ease-in-out 0.3s;
 }
 .logo-text:hover {
@@ -72,6 +67,7 @@ img {
 /*************************************/
 .main {
   display: block;
+  position: relative;
 }
 /*************************************/
 /* rules STYLING */
@@ -147,6 +143,28 @@ img {
   100% {
     transform: translateY(0%);
   }
+}
+
+.top-btn {
+  background: none;
+  border: 2px solid rgb(54, 48, 158);
+  border-radius: 1.2rem;
+  color: rgb(54, 48, 158);
+  cursor: pointer;
+  padding: 0.2rem 0.1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  position: fixed;
+  bottom: 10%;
+  left: 85%;
+
+  display: none;
+}
+.top-btn .material-symbols-outlined {
+  font-size: 5rem;
+  padding: 0.1rem 0;
+  margin-bottom: -1rem;
 }
 
 /*************************************/
