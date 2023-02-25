@@ -1,16 +1,18 @@
 import dom from "./views/DOM";
 import * as model from "./model";
-import * as meteor from "./views/meteorsView";
+import * as game from "./views/gameView";
 import * as tiles from "./views/tilesView";
 import * as turns from "./views/turnsView";
-import * as popUp from "./views/popUpView";
 import { renderCurrentYear } from "./views/copyRightView";
+import * as popUp from "./views/popUpView";
+import * as start from "./views/rulesSectionView";
 
 const init = function () {
+  renderCurrentYear(model.getYear);
   model.meteorsInitPos(dom.blueMeteor, dom.yellowMeteor);
-  meteor.mouseDown();
-  meteor.moveMouse(model.moveMeteors);
-  meteor.mouseUp(
+  game.mouseDown();
+  game.moveMouse(model.moveMeteors);
+  game.mouseUp(
     model.restoreMeteorInitPos,
     model.meteorsDroppedTiles,
     model.turnManager,
@@ -19,9 +21,12 @@ const init = function () {
   turns.requiredMeteors(
     model.meteorsNum,
     model.turnsCount,
-    meteor.meteorsCounter
+    game.meteorsCounter
   );
-  renderCurrentYear(model.getYear);
+  // popUp.restart();
+  start.startPlaying();
+  game.backToTop();
+  model.isBtnVisible(dom.gameSectionEl, dom.topBtn);
 };
 
 init();
