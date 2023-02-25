@@ -192,3 +192,23 @@ export const getYear = function () {
   const year = new Date().getFullYear();
   return year;
 };
+
+export const isBtnVisible = function (gameSection, topBtn) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          topBtn.style.display = "block";
+        } else {
+          topBtn.style.display = "none";
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.5,
+    }
+  );
+
+  observer.observe(gameSection);
+};
