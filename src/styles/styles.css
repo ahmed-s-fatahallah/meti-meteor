@@ -72,7 +72,6 @@ img {
 /*************************************/
 .main {
   display: block;
-  position: relative;
 }
 /*************************************/
 /* rules STYLING */
@@ -174,6 +173,8 @@ img {
   gap: 10rem;
   align-items: flex-start;
   margin-top: 4rem;
+
+  position: relative;
 }
 
 .tiles-container {
@@ -239,7 +240,7 @@ img {
 
 .blue {
   position: absolute;
-  left: 10%;
+  left: 8%;
   bottom: 30%;
 
   background-image: url("./../imgs/blue-meteor.jfif");
