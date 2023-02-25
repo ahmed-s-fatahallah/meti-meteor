@@ -92,7 +92,7 @@ img {
   letter-spacing: 1px;
   border-radius: 1.2rem;
 }
-.section-main {
+.section-game {
   display: flex;
   gap: 10rem;
   align-items: flex-start;
@@ -122,6 +122,10 @@ img {
   transform: rotate(-45deg);
   z-index: -1;
   pointer-events: none;
+}
+
+.destroyed {
+  visibility: hidden;
 }
 
 .meteor {
