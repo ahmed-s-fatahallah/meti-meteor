@@ -1,3 +1,4 @@
+//  GLOBAL IMPORTS
 import dom from "./views/DOM";
 import * as model from "./model";
 import * as game from "./views/gameView";
@@ -7,6 +8,7 @@ import * as popUp from "./views/popUpView";
 import * as start from "./views/rulesSectionView";
 import * as helpers from "./helpers";
 
+//  INIT FUNCTION
 const init = function () {
   renderCurrentYear(helpers.GET_CURRENT_YEAR);
   model.meteorsInitPos(dom.blueMeteor, dom.yellowMeteor);

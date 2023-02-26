@@ -1,4 +1,4 @@
-//  IMPORTS
+//  GLOBAL IMPORTS
 import * as helpers from "./helpers";
 
 //  GLOBAL VARIABLES
