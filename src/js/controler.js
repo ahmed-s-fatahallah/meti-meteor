@@ -10,8 +10,8 @@ import * as start from "./views/rulesSectionView";
 const init = function () {
   renderCurrentYear(model.getYear);
   model.meteorsInitPos(dom.blueMeteor, dom.yellowMeteor);
-  game.mouseDown();
-  game.moveMouse(model.moveMeteors);
+  game.mouseDown(model.getInitPos);
+  game.mouseMove(model.moveMeteors);
   game.mouseUp(
     model.restoreMeteorInitPos,
     model.meteorsDroppedTiles,

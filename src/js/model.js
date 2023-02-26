@@ -1,7 +1,9 @@
 export let meteorsPos, meteorsNum;
 export let meteorsCounter = 1;
-
 export let turnsCount = 5;
+
+let initClientX, initClientY, meteorTopPos, meteorLeftPos;
+
 export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   const meteorsObj = {
     blueMeteor: {
@@ -16,11 +18,32 @@ export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   meteorsPos = meteorsObj;
 };
 
+export const getInitPos = function (target, meteor) {
+  initClientX = target.clientX;
+  initClientY = target.clientY;
+  meteorTopPos = parseInt(getComputedStyle(meteor).top);
+  meteorLeftPos = parseInt(getComputedStyle(meteor).left);
+};
+
 export const moveMeteors = function (e, meteor) {
-  meteor.style.top =
-    parseInt(getComputedStyle(meteor).top) + e.movementY + "px";
-  meteor.style.left =
-    parseInt(getComputedStyle(meteor).left) + e.movementX + "px";
+  let cursorPosX, cursorPosY;
+  if (e.type === "touchmove") {
+    cursorPosX = e.touches[0].clientX - initClientX;
+    cursorPosY = e.touches[0].clientY - initClientY;
+
+    meteor.style.top =
+      meteorTopPos + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
+    meteor.style.left =
+      meteorLeftPos + parseInt(getComputedStyle(meteor).x) + cursorPosX + "px";
+  }
+  if (e.type === "mousemove") {
+    cursorPosX = e.clientX - initClientX;
+    cursorPosY = e.clientY - initClientY;
+    meteor.style.top =
+      meteorTopPos + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
+    meteor.style.left =
+      meteorLeftPos + parseInt(getComputedStyle(meteor).x) + cursorPosX + "px";
+  }
 };
 
 export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
@@ -33,7 +56,7 @@ export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
     yellowMeteor.style.left = meteorsPos.yellowMeteor.leftPos;
     blueMeteor.style.pointerEvents = "auto";
     yellowMeteor.style.pointerEvents = "auto";
-  }, 1000);
+  }, 500);
 };
 
 export const meteorsDroppedTiles = function (meteor, yellowInner) {

@@ -5,20 +5,40 @@ import * as popUp from "./popUpView";
 
 export let isHolding;
 
-export const mouseDown = function () {
-  document.addEventListener("mousedown", (e) => {
-    e.preventDefault();
+export const mouseDown = function (handler) {
+  const mouseDownHandler = (e) => {
+    if (
+      (e.type === "touchmove" && e.targetTouches.length > 1) ||
+      (e.type === "mousedown" && e.button !== 0)
+    )
+      return;
+    if (e.type === "mousedown") {
+      e.preventDefault();
+      handler(e, e.target);
+    }
+    if (e.type === "touchstart") handler(e.touches[0], e.target);
     isHolding = true;
+  };
+  ["mousedown", "touchstart"].forEach((event) => {
+    document.addEventListener(event, mouseDownHandler);
   });
 };
 
-export const moveMouse = function (handler) {
-  document.addEventListener("mousemove", (e) => {
-    e.preventDefault();
+export const mouseMove = function (handler) {
+  const mouseMoveHandler = (e) => {
+    if (
+      (e.type === "touchmove" && e.targetTouches.length > 1) ||
+      (e.type === "mousemove" && e.button !== 0)
+    )
+      return;
+    if (e.type === "mousemove") e.preventDefault();
     if (!isHolding) return;
     const meteor = e.target.closest(".meteor");
     if (!meteor) return;
     handler(e, meteor);
+  };
+  ["mousemove", "touchmove"].forEach((event) => {
+    document.addEventListener(event, mouseMoveHandler);
   });
 };
 
@@ -28,8 +48,13 @@ export const mouseUp = function (
   turnManager,
   loseConditon
 ) {
-  document.addEventListener("mouseup", (e) => {
-    e.preventDefault();
+  const mouseUpHandler = (e) => {
+    if (
+      (e.type === "touchend" && e.targetTouches.length > 1) ||
+      (e.type === "mouseup" && e.button !== 0)
+    )
+      return;
+    if (e.type === "mouseup") e.preventDefault();
     isHolding = false;
     if (e.target !== dom.blueMeteor && e.target !== dom.yellowMeteor) return;
     restorePos(dom.blueMeteor, dom.yellowMeteor);
@@ -49,6 +74,13 @@ export const mouseUp = function (
     }
     turn.TurnsCount(turnsCount, meteorsNum, meteorsCounter);
     popUp.popUpStyling(lost, turnsCount);
+    if (meteorsCounter === 2 && turnsCount === 5) {
+      dom.resetBtn.style.visibility = "visible";
+      dom.resetBtn.style.pointerEvents = "all";
+    }
+  };
+  ["mouseup", "touchend"].forEach((event) => {
+    document.addEventListener(event, mouseUpHandler);
   });
 };
 
@@ -56,5 +88,17 @@ export const backToTop = function () {
   dom.topBtn.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo(0, 0);
+  });
+};
+export const resetGame = function (handler) {
+  dom.resetBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const { turnsCount, meteorsNum, meteorsCounter } = handler(dom.tilesArry);
+    dom.blueMeteor.style.display = "block";
+    dom.yellowMeteor.style.display = "none";
+    dom.resetBtn.style.visibility = "hidden";
+    dom.resetBtn.style.pointerEvents = "none";
+    turn.requiredMeteors(meteorsNum, turnsCount, meteorsCounter);
+    turn.TurnsCount(turnsCount, meteorsNum, meteorsCounter);
   });
 };

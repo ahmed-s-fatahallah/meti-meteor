@@ -259,6 +259,8 @@ img {
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(235, 231, 38);
+  touch-action: none;
+  -ms-touch-action: none;
 }
 .yellow-inner {
   width: 20%;
@@ -270,6 +272,8 @@ img {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  touch-action: none;
+  -ms-touch-action: none;
 }
 
 .blue {
