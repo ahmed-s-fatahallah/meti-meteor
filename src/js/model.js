@@ -1,8 +1,12 @@
+//  IMPORTS
+import * as helpers from "./helpers";
+
 //  GLOBAL VARIABLES
 export let meteorsPos, meteorsNum;
 export let meteorsCounter = 1;
 export let turnsCount = 5;
 
+meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
 let initClientX, initClientY, meteorTopPos, meteorLeftPos;
 
 // GET THE INITIAL POSITION OF BOTH METEORS WHEN THE APP STARTS
@@ -127,20 +131,20 @@ const sidesCoordinates = function (meteorData) {
 //  GET THE COODINATES OF THE OUTER CIRCLE OF THE YELLOW METEOR
 const anglesCoordinates = function (meteorData) {
   const [leftTopCornerX, leftTopCornerY] = [
-    meteorData.left + 71,
-    meteorData.top + 71,
+    meteorData.left + helpers.ANGLES_TO_CIRCLE_OFFSET,
+    meteorData.top + helpers.ANGLES_TO_CIRCLE_OFFSET,
   ];
   const [rightTopCornerX, rightTopCornerY] = [
-    meteorData.right - 71,
-    meteorData.top + 71,
+    meteorData.right - helpers.ANGLES_TO_CIRCLE_OFFSET,
+    meteorData.top + helpers.ANGLES_TO_CIRCLE_OFFSET,
   ];
   const [leftBottomCornerX, leftBottomCornerY] = [
-    meteorData.left + 71,
-    meteorData.bottom - 71,
+    meteorData.left + helpers.ANGLES_TO_CIRCLE_OFFSET,
+    meteorData.bottom - helpers.ANGLES_TO_CIRCLE_OFFSET,
   ];
   const [rightBottomCornerX, rightBottomCornerY] = [
-    meteorData.right - 71,
-    meteorData.bottom - 71,
+    meteorData.right - helpers.ANGLES_TO_CIRCLE_OFFSET,
+    meteorData.bottom - helpers.ANGLES_TO_CIRCLE_OFFSET,
   ];
 
   return [
@@ -187,13 +191,6 @@ const innerYellowCoordinates = function (innerData) {
     [rightInnerBoundryX, rightInnerBoundryY],
   ];
 };
-//  GENERATE RANDOM METEORS NUMBER BETWEEN 3-5
-const generateMeteorsNum = function () {
-  const requiredMeteors = Math.trunc(Math.random() * (5 - 3 + 1) + 3);
-  return requiredMeteors;
-};
-
-meteorsNum = generateMeteorsNum();
 
 //  TURNS MANAGER FUNCTION TO RETURN METEORS DROPPED, TURN NUMBER AND METEORS REQUIRED
 export const turnManager = function () {
@@ -201,7 +198,7 @@ export const turnManager = function () {
   if (meteorsCounter > meteorsNum) {
     turnsCount--;
     meteorsCounter = 1;
-    meteorsNum = generateMeteorsNum();
+    meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
     if (turnsCount === 3) meteorsNum = 1;
     return {
       meteorsCounter,
@@ -224,12 +221,6 @@ export const loseConditoin = function (tilesContainer, middleTile) {
     if (tile.classList.contains("destroyed")) counter++;
   });
   if (counter >= 4) return true;
-};
-
-//  FOOTER GET YEAR FUCNTION FOR COPYRIGHT
-export const getYear = function () {
-  const year = new Date().getFullYear();
-  return year;
 };
 
 //  OBSERVE THE GAME SECTION FUNCTION TO SHOW BACK TO TOP BTN
@@ -256,7 +247,7 @@ export const isBtnVisible = function (gameSection, topBtn) {
 //  RESTART GAME FUCNTION
 export const restart = function (tiles) {
   turnsCount = 5;
-  meteorsNum = generateMeteorsNum();
+  meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
   meteorsCounter = 1;
   tiles.forEach((tile) => {
     if (tile.classList.contains("destroyed"))

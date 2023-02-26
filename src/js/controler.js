@@ -1,14 +1,14 @@
 import dom from "./views/DOM";
 import * as model from "./model";
 import * as game from "./views/gameView";
-import * as tiles from "./views/tilesView";
 import * as turns from "./views/turnsView";
 import { renderCurrentYear } from "./views/copyRightView";
 import * as popUp from "./views/popUpView";
 import * as start from "./views/rulesSectionView";
+import * as helpers from "./helpers";
 
 const init = function () {
-  renderCurrentYear(model.getYear);
+  renderCurrentYear(helpers.GET_CURRENT_YEAR);
   model.meteorsInitPos(dom.blueMeteor, dom.yellowMeteor);
   game.mouseDown(model.getInitPos);
   game.mouseMove(model.moveMeteors);
