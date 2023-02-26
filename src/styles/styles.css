@@ -129,6 +129,10 @@ img {
   border: none;
   cursor: pointer;
 }
+.play-btn:focus {
+  outline: none;
+  box-shadow: 1px 1px 5px 5px rgba(54, 48, 158, 0.5);
+}
 .play-btn p {
   color: rgb(54, 48, 158);
   font-size: 2.5rem;
@@ -168,6 +172,10 @@ img {
 
   display: none;
 }
+.top-btn:focus {
+  outline: none;
+  box-shadow: 1px 1px 5px 5px rgba(54, 48, 158, 0.5);
+}
 .top-btn .material-symbols-outlined {
   font-size: 5rem;
   padding: 0.1rem 0;
@@ -198,6 +206,7 @@ img {
   gap: 10rem;
   align-items: flex-start;
   margin-top: 4rem;
+  justify-content: space-between;
 
   position: relative;
 }
@@ -272,13 +281,15 @@ img {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  touch-action: none;
+  -ms-touch-action: none;
 }
 /*************************************/
 /* POPUP STYLING */
 /*************************************/
 .pop-up {
-  position: absolute;
-  top: 50%;
+  top: 28%;
   margin: 0 auto;
   padding: 2rem 4rem;
   font-size: 5rem;
@@ -306,7 +317,7 @@ img {
   }
 }
 
-.restart {
+.restart-btn {
   display: block;
   margin: 3rem auto 1rem;
   padding: 1rem 2rem;
@@ -321,11 +332,35 @@ img {
   transition: all 0.1s ease;
   box-shadow: 0 5px 5px rgb(0, 0, 0, 0.7);
 }
-.restart:focus {
+.restart-btn:focus {
   outline: none;
   box-shadow: 1px 1px 5px 5px rgba(54, 48, 158, 0.5);
 }
-.restart:active {
+.restart-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 5px rgb(0, 0, 0, 0.7);
+}
+.reset-btn {
+  padding: 0.5rem 2.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(54, 48, 158);
+  background: none;
+  border-radius: 1.2rem;
+  border: 2px solid rgba(54, 48, 158);
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.5);
+
+  transition: all 0.1s ease;
+
+  visibility: hidden;
+  pointer-events: none;
+  cursor: pointer;
+}
+.reset-btn:focus {
+  outline: none;
+  box-shadow: 1px 1px 5px 5px rgba(54, 48, 158, 0.5);
+}
+.reset-btn:active {
   transform: translateY(1px);
   box-shadow: 0 3px 5px rgb(0, 0, 0, 0.7);
 }

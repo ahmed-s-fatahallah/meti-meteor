@@ -21,6 +21,8 @@ export const restart = function (handler) {
     const { turnsCount, meteorsNum, meteorsCounter } = handler(dom.tilesArry);
     dom.blueMeteor.style.display = "block";
     dom.yellowMeteor.style.display = "none";
+    dom.resetBtn.style.visibility = "hidden";
+    dom.resetBtn.style.pointerEvents = "none";
     turn.requiredMeteors(meteorsNum, turnsCount, meteorsCounter);
     turn.TurnsCount(turnsCount, meteorsNum, meteorsCounter);
   });

@@ -9,10 +9,11 @@ const DOM = {
   meteorsCounter: document.querySelector(".meteors-num"),
   turnsCounter: document.querySelector(".turn"),
   popUp: document.querySelector(".pop-up"),
-  restartBtn: document.querySelector(".restart"),
+  restartBtn: document.querySelector(".restart-btn"),
   copyRight: document.querySelector(".year"),
   startPlayingBtn: document.querySelector(".play-btn"),
   topBtn: document.querySelector(".top-btn"),
+  resetBtn: document.querySelector(".reset-btn"),
 };
 
 export default DOM;

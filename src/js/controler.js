@@ -27,6 +27,7 @@ const init = function () {
   game.backToTop();
   model.isBtnVisible(dom.gameSectionEl, dom.topBtn);
   popUp.restart(model.restart);
+  game.resetGame(model.restart);
 };
 
 init();
