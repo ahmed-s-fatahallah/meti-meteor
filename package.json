@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html --dist-dir ./dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npx eslint ./src/js"
   },
   "keywords": [
     "HTML",
@@ -17,6 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/babel-preset-env": "^2.8.3",
+    "eslint": "^8.35.0",
     "parcel": "^2.8.3"
   },
   "dependencies": {
