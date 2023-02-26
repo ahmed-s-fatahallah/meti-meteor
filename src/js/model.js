@@ -2,11 +2,11 @@
 import * as helpers from "./helpers";
 
 //  GLOBAL VARIABLES
-export let meteorsPos, meteorsNum;
-export let meteorsCounter = 1;
-export let turnsCount = 5;
+export let meteorsPos;
+export let meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
+export let meteorsCounter = helpers.METEORS_COUNTER;
+export let turnsCount = helpers.TURNS_COUNT;
 
-meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
 let initClientX, initClientY, meteorTopPos, meteorLeftPos;
 
 // GET THE INITIAL POSITION OF BOTH METEORS WHEN THE APP STARTS
@@ -24,7 +24,7 @@ export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   meteorsPos = meteorsObj;
 };
 
-//  GET THE INITIAL CLICK OR TOUCH AND METEORS POSITION
+//  GET THE INITIAL CLICK OR TOUCH AND CURRENT METEORS POSITION
 export const getInitPos = function (target, meteor) {
   initClientX = target.clientX;
   initClientY = target.clientY;
@@ -100,8 +100,9 @@ export const meteorsDroppedTiles = function (meteor, yellowInner) {
   const droppedZone = Array.from(new Set(Array.from(tilesHit)));
   return droppedZone;
 };
-// GET THE COORDINATES OF THE SIDES OF A METEOR
-// WHICH ARE HALF THE DISTANCE BETWEEN EACH 2 ANGLES
+//  GET THE COORDINATES OF THE SIDES OF A METEOR
+//  WHICH ARE HALF THE DISTANCE BETWEEN EACH 2 ANGLES
+//  -1 FOR SMALL OFFSET TO DETECT THE TILE IT TOUCHES
 const sidesCoordinates = function (meteorData) {
   const [topBoundryX, topBoundryY] = [
     meteorData.left + meteorData.width / 2,
@@ -223,7 +224,7 @@ export const loseConditoin = function (tilesContainer, middleTile) {
   if (counter >= 4) return true;
 };
 
-//  OBSERVE THE GAME SECTION FUNCTION TO SHOW BACK TO TOP BTN
+//  OBSERVE THE GAME SECTION TO SHOW BACK TO TOP BTN
 export const isBtnVisible = function (gameSection, topBtn) {
   const observer = new IntersectionObserver(
     (entries) => {
