@@ -1,9 +1,11 @@
+//  GLOBAL VARIABLES
 export let meteorsPos, meteorsNum;
 export let meteorsCounter = 1;
 export let turnsCount = 5;
 
 let initClientX, initClientY, meteorTopPos, meteorLeftPos;
 
+// GET THE INITIAL POSITION OF BOTH METEORS WHEN THE APP STARTS
 export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   const meteorsObj = {
     blueMeteor: {
@@ -18,6 +20,7 @@ export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
   meteorsPos = meteorsObj;
 };
 
+//  GET THE INITIAL CLICK OR TOUCH AND METEORS POSITION
 export const getInitPos = function (target, meteor) {
   initClientX = target.clientX;
   initClientY = target.clientY;
@@ -25,6 +28,7 @@ export const getInitPos = function (target, meteor) {
   meteorLeftPos = parseInt(getComputedStyle(meteor).left);
 };
 
+//  MOVE METEORS CALC FUCNTION WHILE MOUSE AND TOUCH MOVES
 export const moveMeteors = function (e, meteor) {
   let cursorPosX, cursorPosY;
   if (e.type === "touchmove") {
@@ -46,6 +50,7 @@ export const moveMeteors = function (e, meteor) {
   }
 };
 
+//  RESTORE METEORS INITIAL POSITION AFTER DROPPING THEM ANYWHERE
 export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
   blueMeteor.style.pointerEvents = "none";
   yellowMeteor.style.pointerEvents = "none";
@@ -59,9 +64,10 @@ export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
   }, 500);
 };
 
+// GET THE TILES HIT WHEN A METEOR DROP AND BY THE INNER OF THE YELLOW METEOR
 export const meteorsDroppedTiles = function (meteor, yellowInner) {
   let tilesHit;
-  meteorData = meteor.getBoundingClientRect();
+  let meteorData = meteor.getBoundingClientRect();
   const innerData = yellowInner.getBoundingClientRect();
 
   const sidesCoordinatesArry = sidesCoordinates(meteorData);
@@ -90,7 +96,8 @@ export const meteorsDroppedTiles = function (meteor, yellowInner) {
   const droppedZone = Array.from(new Set(Array.from(tilesHit)));
   return droppedZone;
 };
-
+// GET THE COORDINATES OF THE SIDES OF A METEOR
+// WHICH ARE HALF THE DISTANCE BETWEEN EACH 2 ANGLES
 const sidesCoordinates = function (meteorData) {
   const [topBoundryX, topBoundryY] = [
     meteorData.left + meteorData.width / 2,
@@ -117,6 +124,7 @@ const sidesCoordinates = function (meteorData) {
   ];
 };
 
+//  GET THE COODINATES OF THE OUTER CIRCLE OF THE YELLOW METEOR
 const anglesCoordinates = function (meteorData) {
   const [leftTopCornerX, leftTopCornerY] = [
     meteorData.left + 71,
@@ -143,6 +151,7 @@ const anglesCoordinates = function (meteorData) {
   ];
 };
 
+//  GET THE COORDINATES OF THE CENTER OF A METEOR
 const centerCoordinates = function (meteorData) {
   const [centerX, centerY] = [
     meteorData.left + meteorData.width / 2,
@@ -152,6 +161,7 @@ const centerCoordinates = function (meteorData) {
   return [centerX, centerY];
 };
 
+//  GET THE COODINATES OF THE INNER CIRCLE OF THE YELLOW METEOR
 const innerYellowCoordinates = function (innerData) {
   const [topInnerBoundryX, topInnerBoundryY] = [
     innerData.left + innerData.width / 2,
@@ -177,12 +187,15 @@ const innerYellowCoordinates = function (innerData) {
     [rightInnerBoundryX, rightInnerBoundryY],
   ];
 };
+//  GENERATE RANDOM METEORS NUMBER BETWEEN 3-5
 const generateMeteorsNum = function () {
-  const requiredMeteors = Math.trunc(Math.random() * (4 - 2 + 1) + 2);
+  const requiredMeteors = Math.trunc(Math.random() * (5 - 3 + 1) + 3);
   return requiredMeteors;
 };
 
 meteorsNum = generateMeteorsNum();
+
+//  TURNS MANAGER FUNCTION TO RETURN METEORS DROPPED, TURN NUMBER AND METEORS REQUIRED
 export const turnManager = function () {
   meteorsCounter++;
   if (meteorsCounter > meteorsNum) {
@@ -203,6 +216,7 @@ export const turnManager = function () {
   };
 };
 
+//  LOSE CONDITION FUNCTION TO DETECT HOW MANY TILES WERE DESTROYED EACH DROP
 export const loseConditoin = function (tilesContainer, middleTile) {
   let counter = 0;
   if (middleTile.classList.contains("destroyed")) return true;
@@ -212,11 +226,13 @@ export const loseConditoin = function (tilesContainer, middleTile) {
   if (counter >= 4) return true;
 };
 
+//  FOOTER GET YEAR FUCNTION FOR COPYRIGHT
 export const getYear = function () {
   const year = new Date().getFullYear();
   return year;
 };
 
+//  OBSERVE THE GAME SECTION FUNCTION TO SHOW BACK TO TOP BTN
 export const isBtnVisible = function (gameSection, topBtn) {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -237,6 +253,7 @@ export const isBtnVisible = function (gameSection, topBtn) {
   observer.observe(gameSection);
 };
 
+//  RESTART GAME FUCNTION
 export const restart = function (tiles) {
   turnsCount = 5;
   meteorsNum = generateMeteorsNum();
