@@ -549,6 +549,7 @@ img {
 }
 @media screen and (max-width: 520px) {
   .section-game {
+    height: 90vh;
     display: block;
   }
   .tiles-container {
@@ -573,14 +574,14 @@ img {
     left: 75%;
   }
   .yellow {
-    top: 70%;
-    left: -15%;
+    top: 60%;
+    left: 0%;
     width: 55%;
   }
 
   .blue {
-    bottom: 0%;
-    left: 10%;
+    bottom: 20%;
+    left: 20%;
     width: 9%;
   }
   .logo-text {
@@ -601,6 +602,7 @@ img {
 }
 @media screen and (max-width: 320px) {
   .section-game {
+    height: 50vh;
     display: block;
   }
   .tile {
@@ -650,12 +652,12 @@ img {
     padding: 0;
   }
   .yellow {
-    top: 38%;
+    top: 73%;
     left: -6%;
     width: 38%;
   }
   .blue {
-    bottom: 0%;
+    bottom: 10%;
     left: 10%;
     width: 9%;
   }
