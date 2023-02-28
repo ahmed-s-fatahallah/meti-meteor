@@ -5,7 +5,7 @@
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "predeploy": "rm -rf dist && parcel build ./*.html --public-url https://github.com/ahmed-s-fatahallah/meteors-game",
+    "predeploy": "rm -rf dist && parcel build ./*.html --public-url /meteors-game/",
     "deploy": "gh-pages -d dist",
     "build": "parcel build index.html --dist-dir ./dist",
     "lint": "npx eslint ./src/js"
