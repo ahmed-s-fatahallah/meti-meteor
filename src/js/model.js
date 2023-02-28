@@ -80,7 +80,7 @@ export const meteorsDroppedTiles = function (meteor, yellowInner) {
   const center = centerCoordinates(meteorData);
   const middleHit = document
     .elementsFromPoint(...center)
-    .filter((el) => el.classList[0] === "tile");
+    .filter((el) => el.classList.contains("tile"));
   if (middleHit.length === 0) return;
   if (meteor.classList.contains("blue")) {
     const sidesHit = sidesCoordinatesArry
@@ -93,7 +93,7 @@ export const meteorsDroppedTiles = function (meteor, yellowInner) {
       .concat(angleCoordinatesArry)
       .concat(innerYellowCoordinatesArry)
       .map((c) => document.elementFromPoint(...c))
-      .filter((el) => el !== null && el.classList[0] === "tile");
+      .filter((el) => el !== null && el.classList.contains("tile"));
     tilesHit = outerInnerHit.concat(middleHit);
   }
 
