@@ -549,7 +549,7 @@ img {
 }
 @media screen and (max-width: 520px) {
   .section-game {
-    height: 90vh;
+    height: 80vh;
     display: block;
   }
   .tiles-container {
