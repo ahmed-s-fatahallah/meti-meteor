@@ -16,7 +16,7 @@ html {
   font-size: 62.5%;
   background-color: rgb(32, 33, 36);
   color: rgb(231, 228, 239);
-  font-family: "Roboto", sans-serif;
+  font-family: "Playfair Display", serif;
 
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -108,7 +108,7 @@ img {
 }
 .rules-list {
   padding-left: 2rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: justify;
 }
 .rule {
@@ -191,6 +191,7 @@ img {
   justify-content: center;
   flex-direction: column;
   font-size: 3rem;
+  width: 29%;
 
   gap: 5rem;
 }
@@ -201,6 +202,7 @@ img {
   border: 3px dashed rgb(54, 48, 158);
   letter-spacing: 1px;
   border-radius: 1.2rem;
+  justify-content: center;
 }
 .section-game {
   display: flex;
@@ -399,12 +401,15 @@ img {
 /*************************************/
 
 @media screen and (max-width: 1780px) {
+  .rules-list {
+    font-size: 2rem;
+  }
   .section-game {
     padding-top: 5rem;
     margin-top: 0;
   }
   .turns {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   .yellow {
     top: 35%;
@@ -412,6 +417,9 @@ img {
   }
 }
 @media screen and (max-width: 1200px) {
+  .play-btn {
+    margin-top: 0;
+  }
   .container {
     max-width: 100%;
   }
@@ -437,12 +445,14 @@ img {
     padding: 1rem 2rem;
   }
   .section-game {
-    justify-content: space-around;
+    justify-content: space-evenly;
+    gap: 0;
   }
   .tile {
     font-size: 2rem;
   }
   .turns {
+    width: 22%;
     font-size: 1.5rem;
   }
   .turn,
@@ -488,11 +498,11 @@ img {
   }
   .turns {
     font-size: 1.5rem;
+    width: 30%;
   }
   .turn,
   .meteors-num {
     padding: 1rem 2rem;
-    white-space: nowrap;
   }
 
   .top-btn {
@@ -523,11 +533,18 @@ img {
   }
   .turns {
     font-size: 1.2rem;
+    width: 35%;
   }
   .turn,
   .meteors-num {
     padding: 1rem 2rem;
     white-space: nowrap;
+  }
+  .reset-btn {
+    left: 50%;
+  }
+  .pop-up {
+    font-size: 4rem;
   }
 }
 @media screen and (max-width: 520px) {
@@ -551,11 +568,25 @@ img {
   }
 }
 @media screen and (max-width: 320px) {
+  .section-game {
+    display: block;
+  }
+  .tile {
+    font-size: 1.5rem;
+  }
+  .tiles-container {
+    max-width: min-content;
+    min-width: 40%;
+    margin: 6rem auto 3rem;
+  }
+  .header {
+    gap: 1rem;
+  }
   .logo-text {
     font-size: 1rem;
   }
   .logo-img {
-    width: 4rem;
+    width: 3rem;
   }
   .welcome {
     font-size: 1.5rem;
@@ -567,15 +598,16 @@ img {
     font-size: 2.5rem;
   }
   .turns {
-    font-size: 1rem;
+    font-size: 1.5rem;
     gap: 1rem;
+    width: 70%;
   }
   .turn,
   .meteors-num {
     padding: 0.5rem;
   }
   .reset-btn {
-    left: 50%;
+    top: 25%;
     left: 75%;
   }
   .rules-list {
@@ -585,18 +617,20 @@ img {
     padding: 0;
   }
   .yellow {
-    top: 60%;
+    top: 38%;
+    left: -6%;
+    width: 38%;
   }
   .blue {
-    bottom: 25%;
-  }
-  .tile {
-    font-size: 1.5rem;
-  }
-  .tiles-container {
-    max-width: min-content;
+    bottom: 0%;
+    left: 10%;
+    width: 9%;
   }
   .footer {
     font-size: 1rem;
+  }
+  .pop-up {
+    font-size: 2.5rem;
+    text-align: center;
   }
 }
