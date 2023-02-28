@@ -1,6 +1,12 @@
 // GLOBAL IMPORTS
 import dom from "./DOM";
 
+//  PLAY AUDIO WHEN A TILE GET DESTROYED
+const addAudio = function () {
+  const audioEl = document.querySelector("audio");
+  audioEl.loop = false;
+  audioEl.play();
+};
 // STYLING TILE AND CHECK DESTROYED TILES HANDLER
 export const tilesStyling = function (tiles, meteor) {
   if (!tiles) return;
@@ -16,6 +22,7 @@ export const tilesStyling = function (tiles, meteor) {
     if (+t.firstElementChild.textContent <= 0) {
       t.firstElementChild.textContent = "Destroyed";
       t.classList.add("destroyed");
+      addAudio();
     }
   });
 };
