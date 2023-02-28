@@ -548,6 +548,42 @@ img {
   }
 }
 @media screen and (max-width: 520px) {
+  .section-game {
+    display: block;
+  }
+  .tiles-container {
+    max-width: min-content;
+    min-width: 50%;
+    margin: 8rem 3rem 4rem auto;
+  }
+  .tile {
+    font-size: 2rem;
+  }
+  .turns {
+    font-size: 1.5rem;
+    gap: 1rem;
+    width: 65%;
+  }
+  .turn,
+  .meteors-num {
+    padding: 1rem;
+  }
+  .reset-btn {
+    top: 18%;
+    left: 75%;
+  }
+  .yellow {
+    top: 70%;
+    left: -15%;
+    width: 55%;
+    display: flex;
+  }
+
+  .blue {
+    bottom: 0%;
+    left: 10%;
+    width: 9%;
+  }
   .logo-text {
     font-size: 1.2rem;
   }
@@ -559,9 +595,6 @@ img {
   }
   .top-btn {
     left: 85%;
-  }
-  .reset-btn {
-    left: 50%;
   }
   .rules-list {
     font-size: 1.2rem;
@@ -579,6 +612,7 @@ img {
     min-width: 40%;
     margin: 6rem auto 3rem;
   }
+
   .header {
     gap: 1rem;
   }
