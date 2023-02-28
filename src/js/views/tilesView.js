@@ -1,5 +1,7 @@
+// GLOBAL IMPORTS
 import dom from "./DOM";
 
+// STYLING TILE AND CHECK DESTROYED TILES HANDLER
 export const tilesStyling = function (tiles, meteor) {
   if (!tiles) return;
   tiles.forEach((t) => {

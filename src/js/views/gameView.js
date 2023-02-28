@@ -1,10 +1,13 @@
+//  GLOBAL IMPORTS
 import dom from "./DOM";
 import { tilesStyling } from "./tilesView";
 import * as turn from "./turnsView";
 import * as popUp from "./popUpView";
 
+// GLOBAL VARIABLES
 export let isHolding;
 
+// MOUSEDOWN AND TOUCHDOWN HANDLER
 export const mouseDown = function (handler) {
   const mouseDownHandler = (e) => {
     if (
@@ -24,6 +27,7 @@ export const mouseDown = function (handler) {
   });
 };
 
+// MOUSEMOVE AND TOUCHMOVE HANDLER
 export const mouseMove = function (handler) {
   const mouseMoveHandler = (e) => {
     if (
@@ -42,6 +46,7 @@ export const mouseMove = function (handler) {
   });
 };
 
+//  MOUSEUP AND TOUCHUP HANDLER 
 export const mouseUp = function (
   restorePos,
   detectTile,
@@ -84,12 +89,16 @@ export const mouseUp = function (
   });
 };
 
+
+//  BACK TO TOP BUTTON HANDLER
 export const backToTop = function () {
   dom.topBtn.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo(0, 0);
   });
 };
+
+//  RESET GAME BUTTON HANDLER
 export const resetGame = function (handler) {
   dom.resetBtn.addEventListener("click", (e) => {
     e.preventDefault();

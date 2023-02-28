@@ -1,3 +1,4 @@
+//  QUERY ALL NEEDED DOM ELEMENTS
 const DOM = {
   mainSectionEl: document.querySelector(".main"),
   gameSectionEl: document.querySelector(".section-game"),

@@ -1,6 +1,8 @@
+//  GLOBAL IMPORTS
 import dom from "./DOM";
 import * as turn from "./turnsView";
 
+//  STYLING POPUP WINDOW ACCORDING TO WIN OR LOSE CONDITIONS
 export const popUpStyling = function (loseCondition, turnsCount) {
   if (loseCondition) {
     dom.popUp.firstChild.textContent = "YOU LOST 😞😔";
@@ -15,6 +17,8 @@ export const popUpStyling = function (loseCondition, turnsCount) {
     dom.popUp.showModal();
   }
 };
+
+// STYLING THE RESET BUTTON IN THE POPUP WINDOW ACCORDING TO WIN OR LOSE CONDITION
 export const restart = function (handler) {
   dom.restartBtn.addEventListener("click", (e) => {
     e.preventDefault();
