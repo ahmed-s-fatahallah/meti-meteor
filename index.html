@@ -13,70 +13,56 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="./src/imgs/brel-pet.jpg" />
     <link rel="stylesheet" href="src/styles/styles.css" />
     <script type="module" defer src="./src/js/controler.js"></script>
-    <title>Drag & Drop Meteors Mini Game | Ahmed Saeed</title>
+    <title>Meti Meteor| Ahmed Saeed</title>
   </head>
   <body>
-    <header class="header container">
-      <img
-        src="./src/imgs/brel-pet.jpg"
-        alt="brelshaza pet photo"
-        class="logo-img"
-      />
-      <h1 class="logo-text">Drag & Drop Meteors Mini Game</h1>
-    </header>
     <main class="main container">
-      <section class="rules-section">
-        <h2 class="welcome">WELCOME to Drag & Drop Meteors mini mini game</h2>
-        <!-- <h3 class="details">
-          This game is my personal project, as an implmentation for what I have
-          learned so far about HTML, CSS and JavaScript.
-        </h3> -->
-        <h4 class="made-by">Made by: <em>Ahmed Saeed</em></h4>
-        <p class="list-header">List of rules:</p>
-        <ol class="rules-list">
-          <li class="rule">
-            You have 5 turns. Each turn you get a blue meteor except for turn 3
-            you get a yellow one.
-          </li>
-          <li class="rule">
-            You have to drop a random number, between 3-5, of blue meteors each
-            turn, while at turn 3, you only have to drop 1 yellow meteor.
-          </li>
-          <li class="rule">
-            You have a board with 9 tiles. Each tile has 3 HP except for the
-            middle tile, it has 4 HP.
-          </li>
-          <li class="rule">
-            The blue meteor deals 1 dmg, while the yellow one deals 3 dmg, and
-            the yellow meteor has a huge range
-          </li>
-          <li class="rule">
-            Drag and Drop a meteor inside any tile,
-            <span class="warning-words"
-              >BUT BE CAREFUL IF YOU DROPPED IT BETWEEN TILES, IT WILL HIT ALL
-              THE TILES IN BETWEEN.</span
-            >
-          </li>
-          <li class="rule">
+      <section class="hero-section">
+        <h1 class="logo">
+          <img
+            class="logo-img"
+            src="./src/imgs/logo.png"
+            alt="Meti Meteor logo"
+          />
+        </h1>
+        <button class="rules-btn">Show Rules</button>
+        <button class="play-btn">PLAY NOW</button>
+        <dialog class="rules">
+          <button class="close_rules--btn">X</button>
+          <p>
+            You have 5 turns. Each turn you get a blue meteor
+            <img src="./src/imgs/blue-meteor.jfif" alt="blue meteor image" />
+            except for turn 3 you get a yellow Meteor
+            <img
+              src="./src/imgs/yellow-meteor.jfif"
+              alt="yellow meteor image"
+            />, and you have a board with 9 tiles
+            <img
+              src="./src/imgs/gameBoard.png"
+              alt="game board/ tiles container image"
+            />. Each tile has 3 HP except for the middle tile, it has 4 HP. You
+            have to drag and drop a random number of blue meteors, between 3-5,
+            each turn, while on turn 3 you only have to drag and drop 1 yellow
+            meteor. The blue meteor deals 1 dmg, while the yellow one deals 3
+            dmg, and the yellow meteor has a huge range. The meteor range is
+            indicated by the yellow circle around it, so
+            <img src="./src/imgs/circle.png" alt="Meteor range indicator" />
+            <span>
+              BE CAREFUL IF YOU DROPPED A METEOR BETWEEN TILES, IT WILL HIT ALL
+              THE TILES IN BETWEEN.
+            </span>
             Your job is to finish all 5 turns without destroying more than 3
-            tiles, and to keep the middle tile alive to
-            <span class="win-word">WIN.</span>
-          </li>
-          <li class="rule">
-            If you destroyed 4 or more tiles you lose, and If the middle tile
-            got destroyed <span class="lose-word">YOU LOSE.</span>
-          </li>
-        </ol>
-        <button class="play-btn">
-          <p>Start Playing</p>
-          <span class="material-symbols-outlined"> keyboard_arrow_down </span>
-        </button>
+            tiles, or destroy the middle tile. If all turns end without doing so
+            <span>YOU WIN</span>. If you destroyed 4 or more tiles you lose, and
+            if the middle tile got destroyed <span>YOU LOSE</span>.
+          </p>
+        </dialog>
       </section>
       <section class="section-game">
         <section class="turns">
@@ -107,20 +93,14 @@
         </dialog>
         <button class="reset-btn">Restart</button>
       </section>
-      <button class="top-btn">
+      <!-- <button class="top-btn">
         <span class="material-symbols-outlined"> keyboard_arrow_up </span>
         Top
-      </button>
-    </main>
-    <footer class="footer container">
+      </button> -->
       <p class="copyright">
-        &copy; Copyright <span class="year">YEAR</span> by Ahmed Saeed
+        &copy; Copyright <span class="year">YEAR</span> by
+        <a href="mailto:ahmed.s.fatahallah@gmail.com">Ahmed Saeed</a>
       </p>
-      <p class="contact-me">
-        <a href="mailto:ahmed.s.fatahallah@gmail.com" class="contact-me_link">
-          Contact me
-        </a>
-      </p>
-    </footer>
+    </main>
   </body>
 </html>
