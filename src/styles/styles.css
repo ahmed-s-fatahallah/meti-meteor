@@ -133,14 +133,14 @@ img {
 
 .rules img {
   display: inline-block;
-  width: 3%;
+  width: 2rem;
   border-radius: 50%;
   aspect-ratio: 1/1;
   transform: translateY(40%);
 }
 .rules img:nth-of-type(3) {
   transform: translateY(40%);
-  width: 5%;
+  width: 3.5rem;
 }
 .rules span {
   color: rgba(255, 0, 0, 0.8);
@@ -385,28 +385,17 @@ img {
 /*************************************/
 /* COPYRIGHT STYLING */
 /*************************************/
-.footer {
-  padding: 2rem 4rem;
-  font-size: 1.4rem;
-  font-weight: 500;
-  background-color: rgb(54, 48, 158);
+.copyright {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  letter-spacing: 1.1;
 }
-
-.contact-me_link,
-.contact-me_link:link,
-.contact-me_link:visited {
+.copyright a {
   display: inline-block;
-  text-decoration: none;
-  color: rgb(231, 228, 239);
-  transition: transform 0.3s;
+  color: #fff;
+  font-style: italic;
 }
-
-.contact-me_link:hover,
-.contact-me_link:active {
-  text-decoration: underline;
-  transform: scale(1.1);
-}
-
 /*************************************/
 /* MEDIA QUERIES */
 /*************************************/
