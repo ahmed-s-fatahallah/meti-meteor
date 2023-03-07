@@ -46,7 +46,7 @@ export const mouseMove = function (handler) {
   });
 };
 
-//  MOUSEUP AND TOUCHUP HANDLER 
+//  MOUSEUP AND TOUCHUP HANDLER
 export const mouseUp = function (
   restorePos,
   detectTile,
@@ -88,7 +88,6 @@ export const mouseUp = function (
     document.addEventListener(event, mouseUpHandler);
   });
 };
-
 
 //  BACK TO TOP BUTTON HANDLER
 export const backToTop = function () {

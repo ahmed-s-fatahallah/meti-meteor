@@ -20,7 +20,6 @@ export const tilesStyling = function (tiles, meteor) {
     if (+t.firstElementChild.textContent === 2) t.style.borderColor = "#FFD700";
     if (+t.firstElementChild.textContent === 1) t.style.borderColor = "#FF0000";
     if (+t.firstElementChild.textContent <= 0) {
-      t.firstElementChild.textContent = "Destroyed";
       t.classList.add("destroyed");
       addAudio();
     }
