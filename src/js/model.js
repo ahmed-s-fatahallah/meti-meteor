@@ -225,11 +225,11 @@ export const loseConditoin = function (tilesContainer, middleTile) {
 };
 
 //  OBSERVE THE GAME SECTION TO SHOW BACK TO TOP BTN
-export const isBtnVisible = function (gameSection, topBtn) {
+export const isBtnVisible = function (heroSection, topBtn) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (!entry.isIntersecting) {
           topBtn.style.display = "block";
         } else {
           topBtn.style.display = "none";
@@ -238,11 +238,10 @@ export const isBtnVisible = function (gameSection, topBtn) {
     },
     {
       root: null,
-      threshold: 0.5,
+      threshold: 0.3,
     }
   );
-
-  observer.observe(gameSection);
+  observer.observe(heroSection);
 };
 
 //  RESTART GAME FUCNTION
