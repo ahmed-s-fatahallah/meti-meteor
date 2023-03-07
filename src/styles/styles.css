@@ -178,7 +178,7 @@ button:focus {
 
   position: fixed;
   bottom: 10%;
-  left: 85%;
+  right: 5%;
 
   display: none;
 }
@@ -202,17 +202,14 @@ button:focus {
 /* GAME STYLING */
 /*************************************/
 .section-game {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   min-height: 100vh;
   position: sticky;
   position: -webkit-sticky;
   bottom: 0;
-
-  gap: 8rem;
 }
-.turns {
+/* .turns {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -229,15 +226,29 @@ button:focus {
   letter-spacing: 1px;
   border-radius: 1.2rem;
   justify-content: center;
+} */
+.meteors-container {
+  border: 2px solid rgb(54, 48, 158);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-self: self-end;
+  justify-self: center;
+  padding: 0.5rem;
 }
 
 .tiles-container {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  min-width: 30%;
+  min-width: 50%;
   border: 1px solid rgb(54, 48, 158);
-
+  margin-right: 8rem;
   transform: rotate(45deg);
+
+  align-self: center;
+  justify-self: self-end;
 }
 
 .tile {
@@ -264,6 +275,7 @@ button:focus {
   border-radius: 50%;
   z-index: 2;
   cursor: grab;
+  border: 1px solid rgb(235, 231, 38);
 }
 
 .yellow {
@@ -275,7 +287,6 @@ button:focus {
   display: none;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgb(235, 231, 38);
   touch-action: none;
   -ms-touch-action: none;
 }
@@ -298,9 +309,9 @@ button:focus {
   width: 4.5%;
   left: 8%;
   bottom: 30%;
-  background-image: url("./../imgs/blue-meteor.jfif");
+  background-image: url("./../imgs/blue-meteor-nobg.png");
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 
   touch-action: none;
@@ -400,7 +411,7 @@ button:focus {
 /*************************************/
 /* MEDIA QUERIES */
 /*************************************/
-
+/* 
 @media screen and (max-width: 1780px) {
   .rules-list {
     font-size: 2rem;
@@ -669,4 +680,4 @@ button:focus {
     font-size: 2.5rem;
     text-align: center;
   }
-}
+} */
