@@ -272,8 +272,8 @@ button:focus {
 .meteor {
   aspect-ratio: 1/1;
   border-radius: 50%;
-  cursor: grab;
   width: 5rem;
+  cursor: not-allowed;
   border: 1px solid rgb(235, 38, 38);
 }
 .meteor-holder {
@@ -287,6 +287,7 @@ button:focus {
 .move {
   position: absolute;
   border: 1px solid rgb(235, 231, 38);
+  cursor: grab;
 }
 
 .yellow {

@@ -71,22 +71,17 @@ export const mouseUp = function (
       return;
     }
     tilesStyling(tiles, e.target);
-
-    let manager = turnManager();
+    let turnsCount = turnManager(dom.meteorsContainerEl);
     const lost = loseConditon(dom.tilesArry, dom.middleTile);
-    if (!manager) return;
-    let { meteorsCounter, turnsCount, meteorsNum } = manager;
-    dom.yellowMeteor.style.display = "none";
-    dom.blueMeteor.style.display = "block";
-    if (turnsCount === 3) {
-      dom.yellowMeteor.style.display = "flex";
-      dom.blueMeteor.style.display = "none";
-    }
+    // dom.yellowMeteor.style.display = "none";
+    // dom.blueMeteor.style.display = "flex";
+    // if (turnsCount === 3) {
+    //   dom.yellowMeteor.style.display = "flex";
+    //   dom.blueMeteor.style.display = "none";
+    // }
     popUp.popUpStyling(lost, turnsCount);
-    if (meteorsCounter === 2 && turnsCount === 5) {
-      dom.resetBtn.style.visibility = "visible";
-      dom.resetBtn.style.pointerEvents = "all";
-    }
+    // dom.resetBtn.style.visibility = "visible";
+    // dom.resetBtn.style.pointerEvents = "all";
   };
   ["mouseup", "touchend"].forEach((event) => {
     document.addEventListener(event, mouseUpHandler);
