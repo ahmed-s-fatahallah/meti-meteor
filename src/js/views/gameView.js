@@ -15,6 +15,8 @@ export const mouseDown = function (handler) {
       (e.type === "mousedown" && e.button !== 0)
     )
       return;
+    const meteor = e.target.closest(".meteor");
+    if (!meteor) return;
     if (e.type === "mousedown") {
       e.preventDefault();
       handler(e, e.target);
@@ -61,10 +63,13 @@ export const mouseUp = function (
       return;
     if (e.type === "mouseup") e.preventDefault();
     isHolding = false;
-    if (e.target !== dom.blueMeteor && e.target !== dom.yellowMeteor) return;
-    restorePos(dom.blueMeteor, dom.yellowMeteor);
+    const meteor = e.target.closest(".meteor");
+    if (!meteor) return;
     const tiles = detectTile(e.target, dom.innerYellowMeteor);
-    if (!tiles) return;
+    if (!tiles) {
+      restorePos(meteor);
+      return;
+    }
     tilesStyling(tiles, e.target);
 
     let manager = turnManager();
@@ -77,7 +82,6 @@ export const mouseUp = function (
       dom.yellowMeteor.style.display = "flex";
       dom.blueMeteor.style.display = "none";
     }
-    turn.TurnsCount(turnsCount, meteorsNum, meteorsCounter);
     popUp.popUpStyling(lost, turnsCount);
     if (meteorsCounter === 2 && turnsCount === 5) {
       dom.resetBtn.style.visibility = "visible";

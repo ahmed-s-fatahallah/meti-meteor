@@ -21,10 +21,11 @@ html {
   font-size: calc(15px + 0.390625vw);
 
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 img {
-  size: 100%;
+  width: 100%;
 }
 
 button {
@@ -59,6 +60,7 @@ button:focus {
 .logo-img {
   display: block;
   margin: 0 auto;
+  width: auto;
 }
 .play-btn,
 .rules-btn {
@@ -203,40 +205,37 @@ button:focus {
 /*************************************/
 .section-game {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 40% 60%;
   min-height: 100vh;
   position: sticky;
   position: -webkit-sticky;
   bottom: 0;
 }
-/* .turns {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  font-size: 1rem;
-  width: 20%;
 
-  gap: 5rem;
+.turns-container {
+  align-self: self-end;
+  justify-self: center;
+  margin: 0 0 2rem 2rem;
 }
-.turn,
-.meteors-num {
-  display: flex;
-  padding: 2rem;
-  border: 3px dashed rgb(54, 48, 158);
-  letter-spacing: 1px;
-  border-radius: 1.2rem;
-  justify-content: center;
-} */
-.meteors-container {
+.turn-num {
+  display: inline-block;
+  padding: 0.6rem;
+  margin-left: 1rem;
   border: 2px solid rgb(54, 48, 158);
+  transform: translateY(2px);
+  border-radius: 1rem;
+  font-family: "Bangers", cursive;
+  font-size: 1.5rem;
+  letter-spacing: 0.08rem;
+}
+.meteors-container {
+  border: 2px dashed rgb(54, 48, 158);
   display: flex;
   align-items: center;
   justify-content: space-around;
   gap: 1rem;
-  margin-bottom: 2rem;
-  align-self: self-end;
-  justify-self: center;
   padding: 0.5rem;
+  border-radius: 1rem;
 }
 
 .tiles-container {
@@ -273,8 +272,20 @@ button:focus {
 .meteor {
   aspect-ratio: 1/1;
   border-radius: 50%;
-  z-index: 2;
   cursor: grab;
+  width: 5rem;
+  border: 1px solid rgb(235, 38, 38);
+}
+.meteor-holder {
+  position: relative;
+  width: 5rem;
+  aspect-ratio: 1/1;
+
+  border-radius: 1rem;
+  z-index: 1;
+}
+.move {
+  position: absolute;
   border: 1px solid rgb(235, 231, 38);
 }
 
@@ -305,17 +316,15 @@ button:focus {
 }
 
 .blue {
-  position: absolute;
-  width: 4.5%;
-  left: 8%;
-  bottom: 30%;
-  background-image: url("./../imgs/blue-meteor-nobg.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   touch-action: none;
   -ms-touch-action: none;
+}
+.meteor img {
+  pointer-events: none;
 }
 .reset-btn {
   position: absolute;
@@ -403,6 +412,7 @@ button:focus {
   letter-spacing: 1.1;
   z-index: 1;
 }
+
 .copyright a {
   display: inline-block;
   color: #fff;

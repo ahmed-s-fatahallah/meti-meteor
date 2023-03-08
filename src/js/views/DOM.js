@@ -2,7 +2,10 @@
 const DOM = {
   mainSectionEl: document.querySelector(".main"),
   gameSectionEl: document.querySelector(".section-game"),
+  heroSectionEl: document.querySelector(".hero-section"),
   tilesArry: Array.from(document.querySelectorAll(".tile")),
+  meteorsContainerEl: document.querySelector(".meteors-container"),
+  meteorHolderEl: document.querySelector(".meteor-holder"),
   middleTile: document.querySelector(".middle"),
   yellowMeteor: document.querySelector(".yellow"),
   innerYellowMeteor: document.querySelector(".yellow-inner"),

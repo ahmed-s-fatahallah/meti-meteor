@@ -1,24 +1,21 @@
 //  GLOBAL IMPORTS
 import * as helpers from "./helpers";
-
+import img from "./../imgs/blue-meteor-nobg.png";
 //  GLOBAL VARIABLES
 export let meteorsPos;
 export let meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
 export let meteorsCounter = helpers.METEORS_COUNTER;
 export let turnsCount = helpers.TURNS_COUNT;
+export let meteorsHTML;
 
 let initClientX, initClientY, meteorTopPos, meteorLeftPos;
 
 // GET THE INITIAL POSITION OF BOTH METEORS WHEN THE APP STARTS
-export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
+export const meteorsInitPos = function (meteor) {
   const meteorsObj = {
-    blueMeteor: {
-      topPos: getComputedStyle(blueMeteor).top,
-      leftPos: getComputedStyle(blueMeteor).left,
-    },
-    yellowMeteor: {
-      topPos: getComputedStyle(yellowMeteor).top,
-      leftPos: getComputedStyle(yellowMeteor).left,
+    meteor: {
+      topPos: getComputedStyle(meteor).top,
+      leftPos: getComputedStyle(meteor).left,
     },
   };
   meteorsPos = meteorsObj;
@@ -26,6 +23,7 @@ export const meteorsInitPos = function (blueMeteor, yellowMeteor) {
 
 //  GET THE INITIAL CLICK OR TOUCH AND CURRENT METEORS POSITION
 export const getInitPos = function (target, meteor) {
+  // meteor.classList.add("move");
   initClientX = target.clientX;
   initClientY = target.clientY;
   meteorTopPos = parseInt(getComputedStyle(meteor).top);
@@ -38,7 +36,6 @@ export const moveMeteors = function (e, meteor) {
   if (e.type === "touchmove") {
     cursorPosX = e.touches[0].clientX - initClientX;
     cursorPosY = e.touches[0].clientY - initClientY;
-
     meteor.style.top =
       meteorTopPos + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
     meteor.style.left =
@@ -55,16 +52,12 @@ export const moveMeteors = function (e, meteor) {
 };
 
 //  RESTORE METEORS INITIAL POSITION AFTER DROPPING THEM ANYWHERE
-export const restoreMeteorInitPos = function (blueMeteor, yellowMeteor) {
-  blueMeteor.style.pointerEvents = "none";
-  yellowMeteor.style.pointerEvents = "none";
+export const restoreMeteorInitPos = function (meteor) {
+  meteor.style.pointerEvents = "none";
   setTimeout(() => {
-    blueMeteor.style.top = meteorsPos.blueMeteor.topPos;
-    blueMeteor.style.left = meteorsPos.blueMeteor.leftPos;
-    yellowMeteor.style.top = meteorsPos.yellowMeteor.topPos;
-    yellowMeteor.style.left = meteorsPos.yellowMeteor.leftPos;
-    blueMeteor.style.pointerEvents = "auto";
-    yellowMeteor.style.pointerEvents = "auto";
+    meteor.style.top = meteorsPos.meteor.topPos;
+    meteor.style.left = meteorsPos.meteor.leftPos;
+    meteor.style.pointerEvents = "auto";
   }, 500);
 };
 
@@ -192,26 +185,27 @@ const innerYellowCoordinates = function (innerData) {
     [rightInnerBoundryX, rightInnerBoundryY],
   ];
 };
+//  GENERATING METEORS HTML
+export const meteorsHTMLGenerator = function (meteorsNum) {
+  let finalHTML = "";
+  let meteorHTML = `<div class="meteor blue">
+  <img src="${img}" alt="blue meteor image" />
+</div>
+`;
+  for (let i = 0; i < meteorsNum; i++) {
+    finalHTML += meteorHTML;
+  }
+  return finalHTML;
+};
+meteorsHTML = meteorsHTMLGenerator(meteorsNum);
 
 //  TURNS MANAGER FUNCTION TO RETURN METEORS DROPPED, TURN NUMBER AND METEORS REQUIRED
-export const turnManager = function () {
-  meteorsCounter++;
-  if (meteorsCounter > meteorsNum) {
+
+export const turnManager = function (container) {
+  if (!container.querySelectorAll(".meteor").length) {
     turnsCount--;
-    meteorsCounter = 1;
-    meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
-    if (turnsCount === 3) meteorsNum = 1;
-    return {
-      meteorsCounter,
-      turnsCount,
-      meteorsNum,
-    };
   }
-  return {
-    meteorsCounter,
-    turnsCount,
-    meteorsNum,
-  };
+  return turnsCount;
 };
 
 //  LOSE CONDITION FUNCTION TO DETECT HOW MANY TILES WERE DESTROYED EACH DROP
