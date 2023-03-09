@@ -1,6 +1,7 @@
 //  GLOBAL IMPORTS
 import * as helpers from "./helpers";
-import img from "./../imgs/blue-meteor-nobg.png";
+import blueImage from "url:./../imgs/blue-meteor-nobg.png";
+import yellowImage from "url:./../imgs/yellow-meteor.png";
 //  GLOBAL VARIABLES
 export let meteorsPos;
 export let meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
@@ -188,12 +189,12 @@ const innerYellowCoordinates = function (innerData) {
 //  GENERATING METEORS HTML
 export const meteorsHTMLGenerator = function (meteorsNum) {
   let finalHTML = "";
-  let meteorHTML = `<div class="meteor blue">
-  <img src="${img}" alt="blue meteor image" />
+  let blueMeteorHTML = `<div class="meteor blue">
+  <img src="${blueImage}" alt="blue meteor image" />
 </div>
 `;
   for (let i = 0; i < meteorsNum; i++) {
-    finalHTML += meteorHTML;
+    finalHTML += blueMeteorHTML;
   }
   return finalHTML;
 };
@@ -202,10 +203,22 @@ meteorsHTML = meteorsHTMLGenerator(meteorsNum);
 //  TURNS MANAGER FUNCTION TO RETURN METEORS DROPPED, TURN NUMBER AND METEORS REQUIRED
 
 export const turnManager = function (container) {
-  if (!container.querySelectorAll(".meteor").length) {
-    turnsCount--;
+  if (container.querySelectorAll(".meteor").length) return;
+  turnsCount--;
+  if (turnsCount === 3) {
+    return {
+      turnsCount,
+      meteorsHTML: `<div class="meteor yellow">
+      <img class= "yellow-inner" src="${yellowImage}" alt="yellow meteor image" />
+    </div>`,
+    };
   }
-  return turnsCount;
+  meteorsHTML = meteorsHTMLGenerator(meteorsNum);
+
+  return {
+    turnsCount,
+    meteorsHTML,
+  };
 };
 
 //  LOSE CONDITION FUNCTION TO DETECT HOW MANY TILES WERE DESTROYED EACH DROP

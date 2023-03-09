@@ -2,6 +2,7 @@
 import dom from "./DOM";
 import { tilesStyling } from "./tilesView";
 import * as turn from "./turnsView";
+import * as container from "./meteorsContainerView";
 import * as popUp from "./popUpView";
 
 // GLOBAL VARIABLES
@@ -65,21 +66,19 @@ export const mouseUp = function (
     isHolding = false;
     const meteor = e.target.closest(".meteor");
     if (!meteor) return;
-    const tiles = detectTile(e.target, dom.innerYellowMeteor);
+    const tiles = detectTile(e.target, e.target.firstElementChild);
     if (!tiles) {
       restorePos(meteor);
       return;
     }
     tilesStyling(tiles, e.target);
-    let turnsCount = turnManager(dom.meteorsContainerEl);
+    container.meteorsManager(e.target);
+    let manager = turnManager(dom.meteorsContainerEl);
+    if (!manager) return;
+    turn.TurnsCount(manager.turnsCount);
     const lost = loseConditon(dom.tilesArry, dom.middleTile);
-    // dom.yellowMeteor.style.display = "none";
-    // dom.blueMeteor.style.display = "flex";
-    // if (turnsCount === 3) {
-    //   dom.yellowMeteor.style.display = "flex";
-    //   dom.blueMeteor.style.display = "none";
-    // }
-    popUp.popUpStyling(lost, turnsCount);
+    popUp.popUpStyling(lost, manager.turnsCount);
+    container.renderMeteors(manager.meteorsHTML);
     // dom.resetBtn.style.visibility = "visible";
     // dom.resetBtn.style.pointerEvents = "all";
   };
