@@ -232,9 +232,10 @@ button:focus {
   border: 2px dashed rgb(54, 48, 158);
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
   gap: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 32rem;
   border-radius: 1rem;
 }
 
@@ -269,6 +270,12 @@ button:focus {
   visibility: hidden;
 }
 
+.shake {
+  animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
 .meteor {
   aspect-ratio: 1/1;
   border-radius: 50%;
@@ -279,41 +286,35 @@ button:focus {
 .meteor-holder {
   position: relative;
   width: 5rem;
+  padding-left: 0.5rem;
   aspect-ratio: 1/1;
+  border-left: 2px solid rgb(54, 48, 158);
 
-  border-radius: 1rem;
   z-index: 1;
 }
-.move {
+.meteor-holder .move {
   position: absolute;
   border: 1px solid rgb(235, 231, 38);
   cursor: grab;
 }
 
 .yellow {
-  position: absolute;
-  width: 30%;
-  top: 30%;
-  right: 70%;
-
-  display: none;
+  width: 25rem;
+  bottom: 10rem;
+  right: 4rem;
+  display: flex;
   justify-content: center;
   align-items: center;
-  touch-action: none;
   -ms-touch-action: none;
+  touch-action: none;
 }
-.yellow-inner {
+.yellow img {
   width: 40%;
   border-radius: 50%;
   aspect-ratio: 1/1;
   pointer-events: none;
-
-  background-image: url("./../imgs/yellow-meteor.jfif");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  touch-action: none;
   -ms-touch-action: none;
+  touch-action: none;
 }
 
 .blue {
@@ -321,8 +322,8 @@ button:focus {
   align-items: center;
   justify-content: center;
 
-  touch-action: none;
   -ms-touch-action: none;
+  touch-action: none;
 }
 .meteor img {
   pointer-events: none;
@@ -351,6 +352,25 @@ button:focus {
   box-shadow: 0 3px 5px rgb(0, 0, 0, 0.7);
 }
 
+@keyframes shake {
+  10%,
+  60%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  40%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+}
 /*************************************/
 /* POPUP STYLING */
 /*************************************/

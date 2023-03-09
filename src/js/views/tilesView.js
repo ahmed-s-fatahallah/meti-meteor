@@ -1,18 +1,21 @@
 // GLOBAL IMPORTS
-import dom from "./DOM";
-
+import audiofile from "url:./../../audio/destroySound.mp3";
 //  PLAY AUDIO WHEN A TILE GET DESTROYED
 const addAudio = function () {
-  const audioEl = document.querySelector("audio");
-  audioEl.loop = false;
-  audioEl.play();
+  const audio = new Audio(audiofile);
+  audio.loop = false;
+  audio.play();
 };
 // STYLING TILE AND CHECK DESTROYED TILES HANDLER
 export const tilesStyling = function (tiles, meteor) {
   if (!tiles) return;
   tiles.forEach((t) => {
     let tileHealth = +t.firstElementChild.textContent;
-    if (meteor === dom.yellowMeteor) {
+    t.classList.add("shake");
+    setTimeout(() => {
+      t.classList.remove("shake");
+    }, 800);
+    if (meteor.classList.contains("yellow")) {
       t.firstElementChild.textContent = tileHealth - 3;
     } else {
       t.firstElementChild.textContent = tileHealth - 1;
