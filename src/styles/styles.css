@@ -26,6 +26,12 @@ html {
 
 img {
   width: 100%;
+
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 button {
@@ -299,7 +305,7 @@ button:focus {
 }
 
 .yellow {
-  width: 25rem;
+  width: 23rem;
   bottom: 10rem;
   right: 4rem;
   display: flex;
