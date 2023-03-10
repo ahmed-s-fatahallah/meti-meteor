@@ -9,24 +9,23 @@ export let meteorsCounter = helpers.METEORS_COUNTER;
 export let turnsCount = helpers.TURNS_COUNT;
 export let meteorsHTML;
 
-let initClientX, initClientY, meteorTopPos, meteorLeftPos;
-
-// GET THE INITIAL POSITION OF BOTH METEORS WHEN THE APP STARTS
-export const meteorsInitPos = function (meteor) {
-  const meteorsObj = {
-    meteor: {
-      topPos: getComputedStyle(meteor).top,
-      leftPos: getComputedStyle(meteor).left,
-    },
-  };
-  meteorsPos = meteorsObj;
-};
+let initClientX,
+  initClientY,
+  meteorTopPos,
+  meteorLeftPos,
+  yellowTop,
+  yellowLeft;
 
 //  GET THE INITIAL CLICK OR TOUCH AND CURRENT METEORS POSITION
-export const getInitPos = function (target, meteor) {
-  // meteor.classList.add("move");
-  initClientX = target.clientX;
-  initClientY = target.clientY;
+export const getInitPos = function (cursor, meteor) {
+  initClientX = cursor.clientX;
+  initClientY = cursor.clientY;
+  if (meteor.classList.contains("yellow")) {
+    if (yellowTop !== undefined && yellowLeft !== undefined) return;
+    yellowTop = parseInt(getComputedStyle(meteor).top);
+    yellowLeft = parseInt(getComputedStyle(meteor).left);
+  }
+  if (meteorTopPos !== undefined && meteorLeftPos !== undefined) return;
   meteorTopPos = parseInt(getComputedStyle(meteor).top);
   meteorLeftPos = parseInt(getComputedStyle(meteor).left);
 };
@@ -37,28 +36,35 @@ export const moveMeteors = function (e, meteor) {
   if (e.type === "touchmove") {
     cursorPosX = e.touches[0].clientX - initClientX;
     cursorPosY = e.touches[0].clientY - initClientY;
-    meteor.style.top =
-      meteorTopPos + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
-    meteor.style.left =
-      meteorLeftPos + parseInt(getComputedStyle(meteor).x) + cursorPosX + "px";
   }
   if (e.type === "mousemove") {
     cursorPosX = e.clientX - initClientX;
     cursorPosY = e.clientY - initClientY;
-    meteor.style.top =
-      meteorTopPos + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
-    meteor.style.left =
-      meteorLeftPos + parseInt(getComputedStyle(meteor).x) + cursorPosX + "px";
   }
+  if (meteor.classList.contains("yellow")) {
+    meteor.style.top =
+      yellowTop + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
+    meteor.style.left =
+      yellowLeft + parseInt(getComputedStyle(meteor).x) + cursorPosX + "px";
+    return;
+  }
+  meteor.style.top =
+    meteorTopPos + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
+  meteor.style.left =
+    meteorLeftPos + parseInt(getComputedStyle(meteor).x) + cursorPosX + "px";
 };
 
 //  RESTORE METEORS INITIAL POSITION AFTER DROPPING THEM ANYWHERE
 export const restoreMeteorInitPos = function (meteor) {
   meteor.style.pointerEvents = "none";
   setTimeout(() => {
-    meteor.style.top = meteorsPos.meteor.topPos;
-    meteor.style.left = meteorsPos.meteor.leftPos;
-    meteor.style.pointerEvents = "auto";
+    meteor.style.top = meteorTopPos + "px";
+    meteor.style.left = meteorLeftPos + "px";
+    if (meteor.classList.contains("yellow")) {
+      meteor.style.top = yellowTop + "px";
+      meteor.style.left = yellowLeft + "px";
+    }
+    meteor.style.pointerEvents = "all";
   }, 500);
 };
 
@@ -203,7 +209,10 @@ meteorsHTML = meteorsHTMLGenerator(meteorsNum);
 //  TURNS MANAGER FUNCTION TO RETURN METEORS DROPPED, TURN NUMBER AND METEORS REQUIRED
 
 export const turnManager = function (container) {
-  if (container.querySelectorAll(".meteor").length) return;
+  if (container.querySelectorAll(".meteor").length)
+    return {
+      turnsCount,
+    };
   turnsCount--;
   if (turnsCount === 3) {
     return {
@@ -213,6 +222,7 @@ export const turnManager = function (container) {
     </div>`,
     };
   }
+  meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
   meteorsHTML = meteorsHTMLGenerator(meteorsNum);
 
   return {
@@ -253,9 +263,9 @@ export const isBtnVisible = function (heroSection, topBtn) {
 
 //  RESTART GAME FUCNTION
 export const restart = function (tiles) {
-  turnsCount = 5;
+  turnsCount = helpers.TURNS_COUNT;
   meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
-  meteorsCounter = 1;
+  meteorsHTML = meteorsHTMLGenerator(meteorsNum);
   tiles.forEach((tile) => {
     if (tile.classList.contains("destroyed"))
       tile.classList.remove("destroyed");
@@ -267,7 +277,6 @@ export const restart = function (tiles) {
 
   return {
     turnsCount,
-    meteorsNum,
-    meteorsCounter,
+    meteorsHTML,
   };
 };
