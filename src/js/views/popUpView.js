@@ -1,7 +1,7 @@
 //  GLOBAL IMPORTS
 import dom from "./DOM";
 import * as turn from "./turnsView";
-
+import * as container from "./meteorsContainerView";
 //  STYLING POPUP WINDOW ACCORDING TO WIN OR LOSE CONDITIONS
 export const popUpStyling = function (loseCondition, turnsCount) {
   if (loseCondition) {
@@ -12,24 +12,31 @@ export const popUpStyling = function (loseCondition, turnsCount) {
   }
   if (turnsCount <= 0 && !loseCondition) {
     dom.popUp.firstChild.textContent = "YOU WON 🎉🎉";
-    dom.restartBtn.style.backgroundColor = "#009100";
+    dom.restartBtn.style.backgroundColor = "rgba(0, 145, 0, 0.8)";
     dom.restartBtn.style.borderColor = "rgba(255, 0, 0, 0)";
     dom.popUp.showModal();
   }
 };
 
-// STYLING THE RESET BUTTON IN THE POPUP WINDOW ACCORDING TO WIN OR LOSE CONDITION
+// THE RESET BUTTON IN THE POPUP WINDOW
 export const restart = function (handler) {
-  dom.restartBtn.addEventListener("click", (e) => {
+  const restartHandler = (e) => {
+    if (
+      (e.type === "keydown" && e.key !== "Escape") ||
+      (e.type === "click" && e.button !== 0)
+    )
+      return;
     e.preventDefault();
-    dom.popUp.close();
-
-    const { turnsCount, meteorsNum, meteorsCounter } = handler(dom.tilesArry);
-    dom.blueMeteor.style.display = "block";
-    dom.yellowMeteor.style.display = "none";
     dom.resetBtn.style.visibility = "hidden";
     dom.resetBtn.style.pointerEvents = "none";
-    turn.requiredMeteors(meteorsNum, turnsCount, meteorsCounter);
-    turn.TurnsCount(turnsCount, meteorsNum, meteorsCounter);
-  });
+    dom.popUp.close();
+    const { turnsCount, meteorsHTML } = handler(dom.tilesArry);
+    dom.meteorsContainerEl.querySelectorAll(".meteor").forEach((m) => {
+      m.remove();
+    });
+    turn.TurnsCount(turnsCount);
+    container.renderMeteors(meteorsHTML);
+  };
+  dom.restartBtn.addEventListener("click", restartHandler);
+  dom.popUp.addEventListener("keydown", restartHandler);
 };
