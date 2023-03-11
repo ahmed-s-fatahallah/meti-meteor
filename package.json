@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Brelshaza meteors mechanic assistant",
   "default": "index.html",
+  "legacy": {
+    "engines": {
+      "browsers": "> 0.5%, last 2 versions, not dead"
+    }
+  },
   "scripts": {
     "start": "parcel index.html",
     "predeploy": "rm -rf dist && parcel build ./*.html --public-url /meteors-game/",
