@@ -6,15 +6,17 @@ import * as container from "./meteorsContainerView";
 export const popUpStyling = function (loseCondition, turnsCount) {
   if (loseCondition) {
     dom.popUp.firstChild.textContent = "YOU LOST 😞😔";
-    dom.popUp.showModal();
     dom.restartBtn.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
     dom.restartBtn.style.borderColor = "rgba(255, 0, 0, 0)";
+    dom.popUp.showModal();
+    return true;
   }
   if (turnsCount <= 0 && !loseCondition) {
     dom.popUp.firstChild.textContent = "YOU WON 🎉🎉";
     dom.restartBtn.style.backgroundColor = "rgba(0, 145, 0, 0.8)";
     dom.restartBtn.style.borderColor = "rgba(255, 0, 0, 0)";
     dom.popUp.showModal();
+    return true;
   }
 };
 
