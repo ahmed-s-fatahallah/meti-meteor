@@ -57,6 +57,7 @@ export const mouseUp = function (
   loseConditon
 ) {
   const mouseUpHandler = (e) => {
+    let isGameEnd;
     if (
       (e.type === "touchend" && e.targetTouches.length > 1) ||
       (e.type === "mouseup" && e.button !== 0)
@@ -78,13 +79,13 @@ export const mouseUp = function (
     let manager = turnManager(dom.meteorsContainerEl);
     const lost = loseConditon(dom.tilesArry, dom.middleTile);
     if (lost || manager.turnsCount === 0) {
-      turn.TurnsCount(manager.turnsCount);
-      popUp.popUpStyling(lost, manager.turnsCount);
+      isGameEnd = popUp.popUpStyling(lost, manager.turnsCount);
+      turn.TurnsCount(manager.turnsCount, isGameEnd);
       return;
     }
     if (!manager.meteorsHTML) return;
     container.renderMeteors(manager.meteorsHTML);
-    turn.TurnsCount(manager.turnsCount);
+    turn.TurnsCount(manager.turnsCount, isGameEnd);
   };
   ["mouseup", "touchend"].forEach((event) => {
     document.addEventListener(event, mouseUpHandler);
