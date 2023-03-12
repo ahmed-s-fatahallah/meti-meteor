@@ -1,3 +1,17 @@
+//  GLOBAL IMPORTS
+import startAduio from "url:./../../src/audio/start.mp3";
+import winAudio from "url:./../../src/audio/win.mp3";
+import loseAudio from "url:./../../src/audio/lose.mp3";
+import shakeAudio from "url:./../../src/audio/shake.mp3";
+import destroyAudio from "url:./../../src/audio/destroySound.mp3";
+
+//  AUDIO WHEN A TILE GET DESTROYED
+export const START_AUDIO = new Audio(startAduio);
+export const WIN_AUDIO = new Audio(winAudio);
+export const LOSE_AUDIO = new Audio(loseAudio);
+export const SHAKE_AUDIO = new Audio(shakeAudio);
+export const DESTROY_AUDIO = new Audio(destroyAudio);
+
 //  OFFSET BETWEEN OUTER ANGLES AND CIRCLE FOR YELLOW METEOR
 export const ANGLES_TO_CIRCLE_OFFSET = 71;
 export const METEORS_COUNTER = 1;

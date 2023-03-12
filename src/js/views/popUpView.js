@@ -2,6 +2,7 @@
 import dom from "./DOM";
 import * as turn from "./turnsView";
 import * as container from "./meteorsContainerView";
+import * as helpers from "./../helpers";
 //  STYLING POPUP WINDOW ACCORDING TO WIN OR LOSE CONDITIONS
 export const popUpStyling = function (loseCondition, turnsCount) {
   if (loseCondition) {
@@ -9,6 +10,7 @@ export const popUpStyling = function (loseCondition, turnsCount) {
     dom.restartBtn.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
     dom.restartBtn.style.borderColor = "rgba(255, 0, 0, 0)";
     dom.popUp.showModal();
+    helpers.LOSE_AUDIO.play();
     return true;
   }
   if (turnsCount <= 0 && !loseCondition) {
@@ -16,6 +18,7 @@ export const popUpStyling = function (loseCondition, turnsCount) {
     dom.restartBtn.style.backgroundColor = "rgba(0, 145, 0, 0.8)";
     dom.restartBtn.style.borderColor = "rgba(255, 0, 0, 0)";
     dom.popUp.showModal();
+    helpers.WIN_AUDIO.play();
     return true;
   }
 };
@@ -38,6 +41,7 @@ export const restart = function (handler) {
     });
     turn.TurnsCount(turnsCount);
     container.renderMeteors(meteorsHTML);
+    helpers.START_AUDIO.play();
   };
   dom.restartBtn.addEventListener("click", restartHandler);
   dom.popUp.addEventListener("keydown", restartHandler);

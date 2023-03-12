@@ -4,6 +4,7 @@ import { tilesStyling } from "./tilesView";
 import * as turn from "./turnsView";
 import * as container from "./meteorsContainerView";
 import * as popUp from "./popUpView";
+import * as helpers from "./../helpers";
 
 // GLOBAL VARIABLES
 export let isHolding;
@@ -97,6 +98,7 @@ export const backToTop = function () {
   dom.topBtn.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo(0, 0);
+    helpers.START_AUDIO.pause();
   });
 };
 
@@ -110,6 +112,7 @@ export const resetGame = function (handler) {
     dom.meteorsContainerEl.querySelectorAll(".meteor").forEach((m) => {
       m.remove();
     });
+    helpers.START_AUDIO.play();
     turn.TurnsCount(turnsCount);
     container.renderMeteors(meteorsHTML);
   });
