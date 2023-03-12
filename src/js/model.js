@@ -73,11 +73,11 @@ export const meteorsDroppedTiles = function (meteor, yellowInner) {
   let tilesHit;
   let meteorData = meteor.getBoundingClientRect();
   const innerData = yellowInner.getBoundingClientRect();
-
   const sidesCoordinatesArry = sidesCoordinates(meteorData);
   const angleCoordinatesArry = anglesCoordinates(meteorData);
   const innerYellowCoordinatesArry = innerYellowCoordinates(innerData);
   const center = centerCoordinates(meteorData);
+
   const middleHit = document
     .elementsFromPoint(...center)
     .filter((el) => el.classList.contains("tile"));
@@ -130,22 +130,23 @@ const sidesCoordinates = function (meteorData) {
 };
 
 //  GET THE COODINATES OF THE OUTER CIRCLE OF THE YELLOW METEOR
+// prettier-ignore
 const anglesCoordinates = function (meteorData) {
   const [leftTopCornerX, leftTopCornerY] = [
-    meteorData.left + helpers.ANGLES_TO_CIRCLE_OFFSET,
-    meteorData.top + helpers.ANGLES_TO_CIRCLE_OFFSET,
+    meteorData.left + (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
+    meteorData.top + (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
   ];
   const [rightTopCornerX, rightTopCornerY] = [
-    meteorData.right - helpers.ANGLES_TO_CIRCLE_OFFSET,
-    meteorData.top + helpers.ANGLES_TO_CIRCLE_OFFSET,
+    meteorData.right - (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
+    meteorData.top + (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
   ];
   const [leftBottomCornerX, leftBottomCornerY] = [
-    meteorData.left + helpers.ANGLES_TO_CIRCLE_OFFSET,
-    meteorData.bottom - helpers.ANGLES_TO_CIRCLE_OFFSET,
+    meteorData.left + (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
+    meteorData.bottom - (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
   ];
   const [rightBottomCornerX, rightBottomCornerY] = [
-    meteorData.right - helpers.ANGLES_TO_CIRCLE_OFFSET,
-    meteorData.bottom - helpers.ANGLES_TO_CIRCLE_OFFSET,
+    meteorData.right - (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
+    meteorData.bottom - (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
   ];
 
   return [
@@ -162,7 +163,6 @@ const centerCoordinates = function (meteorData) {
     meteorData.left + meteorData.width / 2,
     meteorData.top + meteorData.height / 2,
   ];
-
   return [centerX, centerY];
 };
 
