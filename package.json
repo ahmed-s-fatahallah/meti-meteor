@@ -1,7 +1,7 @@
 {
-  "name": "berl-project",
+  "name": "Meti Meteor project",
   "version": "1.0.0",
-  "description": "Brelshaza meteors mechanic assistant",
+  "description": "mini game as an implementation on vanilla html, css and JavaScript",
   "default": "index.html",
   "legacy": {
     "engines": {
