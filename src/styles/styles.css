@@ -66,7 +66,7 @@ button:focus {
 .logo-img {
   display: block;
   margin: 0 auto;
-  width: clamp(20rem, 80vw, 30rem);
+  width: clamp(16rem, 80vw, 30rem);
 }
 .play-btn,
 .rules-btn {
@@ -108,7 +108,7 @@ button:focus {
   color: rgb(112, 45, 189);
 
   line-height: 4;
-  font-size: 1.1rem;
+  font-size: clamp(0.5rem, 1rem, 2rem);
   font-weight: 600;
   transform: translateY(10%);
   border: 2px solid rgb(112, 45, 189);
@@ -222,7 +222,7 @@ button:focus {
 .turns-container {
   align-self: self-end;
   justify-self: center;
-  margin: 0 0 2rem 2rem;
+  margin: 0 0 2rem 6rem;
 }
 .turn-num {
   display: inline-block;
@@ -242,14 +242,14 @@ button:focus {
   justify-content: flex-end;
   gap: 1rem;
   padding: 0.5rem 1rem;
-  width: clamp(15rem, 60vw, 32rem);
+  width: clamp(18rem, 50vw, 32rem);
   border-radius: 1rem;
 }
 
 .tiles-container {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  min-width: clamp(15rem, 50vw, 25rem);
+  min-width: clamp(13rem, 35vw, 25rem);
   border: 1px solid rgb(54, 48, 158);
   margin-right: 8rem;
   transform: rotate(45deg);
@@ -286,7 +286,7 @@ button:focus {
 .meteor {
   aspect-ratio: 1/1;
   border-radius: 50%;
-  width: clamp(2rem, 10vw, 5rem);
+
   cursor: not-allowed;
   border: 1px solid rgb(235, 38, 38);
 }
@@ -306,7 +306,7 @@ button:focus {
 }
 
 .yellow {
-  width: clamp(24rem, 26vw, 60rem);
+  width: 22rem;
   bottom: 10rem;
   right: 4rem;
   display: flex;
@@ -328,7 +328,7 @@ button:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  width: clamp(2rem, 7vw, 5rem);
   -ms-touch-action: none;
   touch-action: none;
 }
@@ -449,3 +449,91 @@ button:focus {
 /*************************************/
 /* MEDIA QUERIES */
 /*************************************/
+@media screen and (max-width: 1024px) {
+  .blue {
+    top: 10px;
+  }
+  .yellow {
+    width: 16rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .yellow {
+    width: 12rem;
+  }
+  .rules {
+    transform: translateY(5%);
+  }
+  @keyframes show-rules {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(5%);
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .logo {
+    grid-column: 1;
+    justify-self: center;
+  }
+  .play-btn,
+  .rules-btn {
+    grid-column: 1;
+
+    justify-self: center;
+  }
+  .rules-btn {
+    align-self: center;
+  }
+  .reset-btn {
+    font-size: 1.2rem;
+    top: 2%;
+  }
+  .section-game {
+    grid-template-columns: 1fr;
+  }
+  .tiles-container {
+    grid-row: 1;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+  }
+  .turns-container {
+    margin: 0;
+    margin-bottom: 3rem;
+    align-self: center;
+    justify-self: center;
+  }
+  .blue {
+    top: 5px;
+  }
+  .yellow {
+    width: 12rem;
+    bottom: 4rem;
+    right: -4rem;
+  }
+  .top-btn {
+    bottom: 5%;
+  }
+  .pop-up {
+    padding: 2rem 0;
+  }
+}
+@media screen and (max-width: 320px) {
+  .blue {
+    top: 0;
+  }
+  .yellow {
+    right: 0;
+  }
+  .pop-up {
+    font-size: 2rem;
+    padding: 2rem 1rem;
+  }
+}
