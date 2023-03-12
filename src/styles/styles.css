@@ -477,6 +477,7 @@ button:focus {
   .hero-section {
     grid-template-columns: 1fr;
     gap: 0;
+    padding: 2rem 0;
   }
   .logo {
     grid-column: 1;
@@ -501,12 +502,13 @@ button:focus {
   .tiles-container {
     grid-row: 1;
     margin: 0;
+    margin-top: 3rem;
     align-self: center;
     justify-self: center;
   }
   .turns-container {
     margin: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     align-self: center;
     justify-self: center;
   }
