@@ -73,6 +73,7 @@ export const mouseUp = function (
       restorePos(activeMeteor);
       return;
     }
+    dom.startPlayingBtn.textContent = "CONTINUE";
     dom.resetBtn.style.visibility = "visible";
     dom.resetBtn.style.pointerEvents = "all";
     tilesStyling(tiles, activeMeteor);
@@ -113,6 +114,7 @@ export const resetGame = function (handler) {
       m.remove();
     });
     helpers.START_AUDIO.play();
+    dom.startPlayingBtn.textContent = "PLAY NOW";
     turn.TurnsCount(turnsCount);
     container.renderMeteors(meteorsHTML);
   });

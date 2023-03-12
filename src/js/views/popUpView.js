@@ -42,6 +42,7 @@ export const restart = function (handler) {
     turn.TurnsCount(turnsCount);
     container.renderMeteors(meteorsHTML);
     helpers.START_AUDIO.play();
+    dom.startPlayingBtn.textContent = "PLAY NOW";
   };
   dom.restartBtn.addEventListener("click", restartHandler);
   dom.popUp.addEventListener("keydown", restartHandler);
