@@ -67,6 +67,7 @@ export const restoreMeteorInitPos = function (meteor) {
 
 // GET THE TILES HIT WHEN A METEOR DROP AND BY THE INNER OF THE YELLOW METEOR
 export const meteorsDroppedTiles = function (meteor, yellowInner) {
+  if (!meteor || !yellowInner) return;
   let tilesHit;
   let meteorData = meteor.getBoundingClientRect();
   const innerData = yellowInner.getBoundingClientRect();
