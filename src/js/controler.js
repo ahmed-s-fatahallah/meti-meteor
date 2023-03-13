@@ -27,5 +27,6 @@ const init = function () {
   model.isBtnVisible(dom.heroSectionEl, dom.topBtn);
   popUp.restart(model.restart);
   game.resetGame(model.restart);
+  game.volumeController();
 };
 init();

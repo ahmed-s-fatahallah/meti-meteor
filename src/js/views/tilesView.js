@@ -1,5 +1,6 @@
 //  GLOBAL IMPORTS
 import * as helpers from "./../helpers";
+
 // STYLING TILE AND CHECK DESTROYED TILES HANDLER
 export const tilesStyling = function (tiles, meteor) {
   if (!tiles) return;
@@ -25,7 +26,6 @@ export const tilesStyling = function (tiles, meteor) {
     if (+t.firstElementChild.textContent <= 0) {
       t.classList.add("destroyed");
       helpers.DESTROY_AUDIO.play();
-      helpers.DESTROY_AUDIO.loop = false;
     }
   });
 };

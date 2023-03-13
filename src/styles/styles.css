@@ -359,6 +359,19 @@ button:focus {
   transform: translateY(1px);
   box-shadow: 0 3px 5px rgb(0, 0, 0, 0.7);
 }
+.section-game form {
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 2%;
+  padding: 0.5rem;
+  border: 2px solid rgba(54, 48, 158);
+  border-radius: 1rem;
+}
+.section-game form output {
+  display: inline-block;
+  width: 1.6rem;
+}
 
 @keyframes shake {
   10%,
@@ -531,6 +544,10 @@ button:focus {
   }
   .pop-up {
     padding: 2rem 0;
+  }
+  .section-game form {
+    top: 55%;
+    width: 11.5rem;
   }
 }
 @media screen and (max-width: 320px) {

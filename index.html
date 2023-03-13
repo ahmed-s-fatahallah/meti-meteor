@@ -135,6 +135,20 @@
           <button class="restart-btn">Restart</button>
         </dialog>
         <button class="reset-btn">Restart</button>
+        <form>
+          <label for="volume">Volume</label>
+          <input
+            id="volume"
+            name="volume"
+            type="range"
+            min="0"
+            max="100"
+            value="50"
+          />
+          <output class="volume-level" name="value" for="volume">50</output>
+          <input name="mute" id="mute" type="checkbox" />
+          <label for="mute">mute</label>
+        </form>
         <button class="top-btn">
           <span class="material-symbols-outlined"> keyboard_arrow_up </span>
           Top

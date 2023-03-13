@@ -8,6 +8,7 @@ import * as helpers from "./../helpers";
 
 // GLOBAL VARIABLES
 export let isHolding, activeMeteor;
+let volumeLevel = 50;
 
 // MOUSEDOWN AND TOUCHDOWN HANDLER
 export const mouseDown = function (handler) {
@@ -39,7 +40,7 @@ export const mouseMove = function (handler) {
       (e.type === "mousemove" && e.button !== 0)
     )
       return;
-    if (e.type === "mousemove") e.preventDefault();
+    // if (e.type === "mousemove") e.preventDefault();
     if (!isHolding) return;
     handler(e, activeMeteor);
   };
@@ -115,5 +116,50 @@ export const resetGame = function (handler) {
     dom.startPlayingBtn.textContent = "PLAY NOW";
     turn.TurnsCount(turnsCount);
     container.renderMeteors(meteorsHTML);
+  });
+};
+
+export const volumeController = function () {
+  [
+    helpers.START_AUDIO,
+    helpers.SHAKE_AUDIO,
+    helpers.DESTROY_AUDIO,
+    helpers.WIN_AUDIO,
+    helpers.LOSE_AUDIO,
+  ].forEach((audio) => {
+    audio.volume = 0.5;
+  });
+  document.addEventListener("input", (e) => {
+    if (e.target === dom.volumeInputEl) {
+      volumeLevel = dom.volumeLevelEl.value = e.target.value;
+      [
+        helpers.START_AUDIO,
+        helpers.SHAKE_AUDIO,
+        helpers.DESTROY_AUDIO,
+        helpers.WIN_AUDIO,
+        helpers.LOSE_AUDIO,
+      ].forEach((audio) => {
+        audio.volume = volumeLevel / 100;
+      });
+      return;
+    }
+    if (dom.volumeMuteEl.checked) {
+      dom.volumeLevelEl.value = dom.volumeInputEl.value = 0;
+      dom.volumeInputEl.style.pointerEvents = "none";
+      dom.volumeInputEl.tabIndex = -1;
+    } else {
+      dom.volumeLevelEl.value = dom.volumeInputEl.value = volumeLevel;
+      dom.volumeInputEl.style.pointerEvents = "all";
+      dom.volumeInputEl.tabIndex = 0;
+    }
+    [
+      helpers.START_AUDIO,
+      helpers.SHAKE_AUDIO,
+      helpers.DESTROY_AUDIO,
+      helpers.WIN_AUDIO,
+      helpers.LOSE_AUDIO,
+    ].forEach((audio) => {
+      audio.volume = dom.volumeLevelEl.value / 100;
+    });
   });
 };

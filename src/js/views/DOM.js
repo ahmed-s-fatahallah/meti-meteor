@@ -17,6 +17,9 @@ const DOM = {
   startPlayingBtn: document.querySelector(".play-btn"),
   topBtn: document.querySelector(".top-btn"),
   resetBtn: document.querySelector(".reset-btn"),
+  volumeInputEl: document.querySelector("#volume"),
+  volumeLevelEl: document.querySelector(".volume-level"),
+  volumeMuteEl: document.querySelector("#mute"),
 };
 
 export default DOM;
