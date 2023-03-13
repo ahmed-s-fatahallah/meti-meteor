@@ -4,6 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary Meta Tags -->
+    <title>Meti Meteor | Ahmed Saeed</title>
+    <meta name="title" content="Meti Meteor — Mini Drag & Drop game" />
+    <meta
+      name="description"
+      content="Meti Meteor is a mini-game based on dragging and dropping meteors on nine tiles without destroying more than 4 of them or destroying the middle one."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://ahmed-s-fatahallah.github.io/meteors-game"
+    />
+    <meta property="og:title" content="Meti Meteor — Mini Drag & Drop game" />
+    <meta
+      property="og:description"
+      content="Meti Meteor is a mini-game based on dragging and dropping meteors on nine tiles without destroying more than 4 of them or destroying the middle one."
+    />
+    <meta property="og:image" content="./src/imgs/metaImg.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://ahmed-s-fatahallah.github.io/meteors-game"
+    />
+    <meta
+      property="twitter:title"
+      content="Meti Meteor — Mini Drag & Drop game"
+    />
+    <meta
+      property="twitter:description"
+      content="Meti Meteor is a mini-game based on dragging and dropping meteors on nine tiles without destroying more than 4 of them or destroying the middle one."
+    />
+    <meta property="twitter:image" content="./src/imgs/metaImg.jpg" />
+    <!-- Google fonts and svgs -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,10 +59,12 @@
       href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
       rel="stylesheet"
     />
+    <!-- Favicon -->
     <link rel="icon" href="./src/imgs/brel-pet.jpg" />
+    <!-- style sheet -->
     <link rel="stylesheet" href="src/styles/styles.css" />
+    <!-- script -->
     <script type="module" defer src="./src/js/controler.js"></script>
-    <title>Meti Meteor| Ahmed Saeed</title>
   </head>
   <body>
     <main class="main container">
@@ -59,16 +98,16 @@
             have to drag and drop a random number of blue meteors, between 3-5,
             each turn, while on turn 3 you only have to drag and drop 1 yellow
             meteor. The blue meteor deals 1 dmg, while the yellow one deals 3
-            dmg, and the yellow meteor has a huge range. The meteor range is
-            indicated by the yellow circle around it, so
+            dmg, and the yellow meteor has a huge range. The meteor's ranges are
+            indicated by the yellow circle around them, so
             <img src="./src/imgs/circle.png" alt="Meteor range indicator" />
             <span>
-              BE CAREFUL IF YOU DROPPED A METEOR BETWEEN TILES, IT WILL HIT ALL
-              THE TILES IN BETWEEN.
+              BE CAREFUL IF YOU DROP A METEOR BETWEEN TILES, IT WILL HIT ALL THE
+              TILES IN BETWEEN.
             </span>
             Your job is to finish all 5 turns without destroying more than 3
             tiles, or destroy the middle tile. If all turns end without doing so
-            <span>YOU WIN</span>. If you destroyed 4 or more tiles you lose, and
+            <span>YOU WIN</span>. If you destroyed 4 or more tiles you lose, or
             if the middle tile got destroyed <span>YOU LOSE</span>.
           </p>
         </dialog>
