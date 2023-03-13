@@ -10,9 +10,9 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "predeploy": "rm -rf dist && parcel build ./*.html --public-url /meteors-game/",
+    "predeploy": "rm -rf dist && parcel build ./*.html --public-url ./",
     "deploy": "gh-pages -d dist",
-    "build": "parcel build index.html --dist-dir ./dist",
+    "build": "parcel build ./*.html --public-url ./",
     "lint": "npx eslint ./src/js"
   },
   "keywords": [
