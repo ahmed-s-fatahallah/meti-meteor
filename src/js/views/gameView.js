@@ -7,7 +7,7 @@ import * as popUp from "./popUpView";
 import * as helpers from "./../helpers";
 
 // GLOBAL VARIABLES
-export let isHolding;
+export let isHolding, activeMeteor;
 
 // MOUSEDOWN AND TOUCHDOWN HANDLER
 export const mouseDown = function (handler) {
@@ -17,7 +17,7 @@ export const mouseDown = function (handler) {
       (e.type === "mousedown" && e.button !== 0)
     )
       return;
-    const activeMeteor = e.target.closest(".move");
+    activeMeteor = e.target.closest(".move");
     if (!activeMeteor) return;
     if (e.type === "mousedown") {
       e.preventDefault();
@@ -41,8 +41,6 @@ export const mouseMove = function (handler) {
       return;
     if (e.type === "mousemove") e.preventDefault();
     if (!isHolding) return;
-    const activeMeteor = e.target.closest(".move");
-    if (!activeMeteor) return;
     handler(e, activeMeteor);
   };
   ["mousemove", "touchmove"].forEach((event) => {
@@ -66,7 +64,7 @@ export const mouseUp = function (
       return;
     if (e.type === "mouseup") e.preventDefault();
     isHolding = false;
-    const activeMeteor = e.target.closest(".move");
+    activeMeteor = e.target.closest(".move");
     if (!activeMeteor) return;
     const tiles = detectTile(activeMeteor, e.target.firstElementChild);
     if (!tiles) {

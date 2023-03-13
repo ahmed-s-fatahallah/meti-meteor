@@ -33,6 +33,7 @@ export const getInitPos = function (cursor, meteor) {
 //  MOVE METEORS CALC FUCNTION WHILE MOUSE AND TOUCH MOVES
 export const moveMeteors = function (e, meteor) {
   let cursorPosX, cursorPosY;
+  if (!meteor) return;
   if (e.type === "touchmove") {
     cursorPosX = e.touches[0].clientX - initClientX;
     cursorPosY = e.touches[0].clientY - initClientY;
@@ -42,16 +43,12 @@ export const moveMeteors = function (e, meteor) {
     cursorPosY = e.clientY - initClientY;
   }
   if (meteor.classList.contains("yellow")) {
-    meteor.style.top =
-      yellowTop + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
-    meteor.style.left =
-      yellowLeft + parseInt(getComputedStyle(meteor).x) + cursorPosX + "px";
+    meteor.style.top = yellowTop + cursorPosY + "px";
+    meteor.style.left = yellowLeft + cursorPosX + "px";
     return;
   }
-  meteor.style.top =
-    meteorTopPos + parseInt(getComputedStyle(meteor).y) + cursorPosY + "px";
-  meteor.style.left =
-    meteorLeftPos + parseInt(getComputedStyle(meteor).x) + cursorPosX + "px";
+  meteor.style.top = meteorTopPos + cursorPosY + "px";
+  meteor.style.left = meteorLeftPos + cursorPosX + "px";
 };
 
 //  RESTORE METEORS INITIAL POSITION AFTER DROPPING THEM ANYWHERE
