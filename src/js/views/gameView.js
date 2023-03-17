@@ -66,7 +66,7 @@ export const mouseUp = function (
     if (e.type === "mouseup") e.preventDefault();
     isHolding = false;
     if (!activeMeteor) return;
-    const tiles = detectTile(activeMeteor, activeMeteor.firstElementChild);
+    const tiles = detectTile(activeMeteor);
     if (!tiles) {
       restorePos(activeMeteor);
       return;

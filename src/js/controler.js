@@ -17,7 +17,7 @@ const init = function () {
   game.mouseMove(model.moveMeteors);
   game.mouseUp(
     model.restoreMeteorInitPos,
-    model.meteorsDroppedTiles,
+    model.detectTiles,
     model.turnManager,
     model.loseConditoin
   );

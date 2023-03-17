@@ -65,94 +65,26 @@ export const restoreMeteorInitPos = function (meteor) {
   }, 500);
 };
 
-// GET THE TILES HIT WHEN A METEOR DROP AND BY THE INNER OF THE YELLOW METEOR
-export const meteorsDroppedTiles = function (meteor, yellowInner) {
-  if (!meteor || !yellowInner) return;
-  let tilesHit;
-  let meteorData = meteor.getBoundingClientRect();
-  const innerData = yellowInner.getBoundingClientRect();
-  const sidesCoordinatesArry = sidesCoordinates(meteorData);
-  const angleCoordinatesArry = anglesCoordinates(meteorData);
-  const innerYellowCoordinatesArry = innerYellowCoordinates(innerData);
-  const center = centerCoordinates(meteorData);
+// GET THE TILES HIT WHEN A METEOR DROP
+export const detectTiles = function (meteor) {
+  const meteorData = meteor.getBoundingClientRect();
+  const radius = meteorData.width / 2;
+  const tilesArry = [];
 
+  const [centerX, centerY] = centerCoordinates(meteorData);
   const middleHit = document
-    .elementsFromPoint(...center)
+    .elementsFromPoint(centerX, centerY)
     .filter((el) => el.classList.contains("tile"));
   if (middleHit.length === 0) return;
-  if (meteor.classList.contains("blue")) {
-    const sidesHit = sidesCoordinatesArry
-      .map((c) => document.elementFromPoint(...c))
-      .filter((el) => el.classList.contains("tile"));
-
-    tilesHit = sidesHit.concat(middleHit);
-  } else {
-    const outerInnerHit = sidesCoordinatesArry
-      .concat(angleCoordinatesArry)
-      .concat(innerYellowCoordinatesArry)
-      .map((c) => document.elementFromPoint(...c))
-      .filter((el) => el !== null && el.classList.contains("tile"));
-    tilesHit = outerInnerHit.concat(middleHit);
+  tilesArry.push(...middleHit);
+  for (let angle = 0; angle <= 360; angle++) {
+    const [x, y] = getCircleCoordinates(centerX, centerY, radius, angle);
+    document.elementsFromPoint(x, y).forEach((el) => {
+      if (el.classList.contains("tile")) tilesArry.push(el);
+    });
   }
-
-  const droppedZone = Array.from(new Set(Array.from(tilesHit)));
-  return droppedZone;
-};
-//  GET THE COORDINATES OF THE SIDES OF A METEOR
-//  WHICH ARE HALF THE DISTANCE BETWEEN EACH 2 ANGLES
-//  -1 FOR SMALL OFFSET TO DETECT THE TILE IT TOUCHES
-const sidesCoordinates = function (meteorData) {
-  const [topBoundryX, topBoundryY] = [
-    meteorData.left + meteorData.width / 2,
-    meteorData.top - 1,
-  ];
-  const [bottomBoundryX, bottomBoundryY] = [
-    meteorData.right - meteorData.width / 2,
-    meteorData.bottom,
-  ];
-  const [leftBoundryX, leftBoundryY] = [
-    meteorData.left - 1,
-    meteorData.bottom - meteorData.height / 2,
-  ];
-  const [rightBoundryX, rightBoundryY] = [
-    meteorData.right,
-    meteorData.bottom - meteorData.height / 2,
-  ];
-
-  return [
-    [topBoundryX, topBoundryY],
-    [bottomBoundryX, bottomBoundryY],
-    [leftBoundryX, leftBoundryY],
-    [rightBoundryX, rightBoundryY],
-  ];
-};
-
-//  GET THE COODINATES OF THE OUTER CIRCLE OF THE YELLOW METEOR
-// prettier-ignore
-const anglesCoordinates = function (meteorData) {
-  const [leftTopCornerX, leftTopCornerY] = [
-    meteorData.left + (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
-    meteorData.top + (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
-  ];
-  const [rightTopCornerX, rightTopCornerY] = [
-    meteorData.right - (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
-    meteorData.top + (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
-  ];
-  const [leftBottomCornerX, leftBottomCornerY] = [
-    meteorData.left + (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
-    meteorData.bottom - (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
-  ];
-  const [rightBottomCornerX, rightBottomCornerY] = [
-    meteorData.right - (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
-    meteorData.bottom - (meteorData.width * helpers.ANGLES_TO_CIRCLE_OFFSET),
-  ];
-
-  return [
-    [leftTopCornerX, leftTopCornerY],
-    [rightTopCornerX, rightTopCornerY],
-    [leftBottomCornerX, leftBottomCornerY],
-    [rightBottomCornerX, rightBottomCornerY],
-  ];
+  const tilesHit = new Set(tilesArry);
+  return tilesHit;
 };
 
 //  GET THE COORDINATES OF THE CENTER OF A METEOR
@@ -164,32 +96,13 @@ const centerCoordinates = function (meteorData) {
   return [centerX, centerY];
 };
 
-//  GET THE COODINATES OF THE INNER CIRCLE OF THE YELLOW METEOR
-const innerYellowCoordinates = function (innerData) {
-  const [topInnerBoundryX, topInnerBoundryY] = [
-    innerData.left + innerData.width / 2,
-    innerData.top - 1,
-  ];
-  const [bottomInnerBoundryX, bottomInnerBoundryY] = [
-    innerData.right - innerData.width / 2,
-    innerData.bottom,
-  ];
-  const [leftInnerBoundryX, leftInnerBoundryY] = [
-    innerData.left - 1,
-    innerData.bottom - innerData.height / 2,
-  ];
-  const [rightInnerBoundryX, rightInnerBoundryY] = [
-    innerData.right,
-    innerData.bottom - innerData.height / 2,
-  ];
-
-  return [
-    [topInnerBoundryX, topInnerBoundryY],
-    [bottomInnerBoundryX, bottomInnerBoundryY],
-    [leftInnerBoundryX, leftInnerBoundryY],
-    [rightInnerBoundryX, rightInnerBoundryY],
-  ];
+// get a point on circle's circumference coordinates detection function
+const getCircleCoordinates = function (cx, cy, r, a) {
+  let x = cx + r * Math.cos((a * Math.PI) / 180);
+  let y = cy + r * Math.sin((a * Math.PI) / 180);
+  return [x, y];
 };
+
 //  GENERATING METEORS HTML
 export const meteorsHTMLGenerator = function (meteorsNum) {
   let finalHTML = "";
