@@ -1,6 +1,6 @@
 {
   "name": "Meti Meteor project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "mini game as an implementation on vanilla html, css and JavaScript",
   "default": "index.html",
   "legacy": {
