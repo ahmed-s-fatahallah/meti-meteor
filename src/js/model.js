@@ -3,9 +3,7 @@ import * as helpers from "./helpers";
 import blueImage from "url:./../imgs/blue-meteor-nobg.png";
 import yellowImage from "url:./../imgs/yellow-meteor.png";
 //  GLOBAL VARIABLES
-export let meteorsPos;
 export let meteorsNum = helpers.GENERATE_RND_METEORS_NUM();
-export let meteorsCounter = helpers.METEORS_COUNTER;
 export let turnsCount = helpers.TURNS_COUNT;
 export let meteorsHTML;
 

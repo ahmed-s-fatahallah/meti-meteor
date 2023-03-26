@@ -12,10 +12,7 @@ export const LOSE_AUDIO = new Audio(loseAudio);
 export const SHAKE_AUDIO = new Audio(shakeAudio);
 export const DESTROY_AUDIO = new Audio(destroyAudio);
 
-//  OFFSET BETWEEN OUTER ANGLES AND CIRCLE FOR YELLOW METEOR
-export const ANGLES_TO_CIRCLE_OFFSET = 0.121;
-
-export const METEORS_COUNTER = 1;
+//  TURNS COUNTER
 export const TURNS_COUNT = 5;
 
 //  GENERATE RANDOM METEORS NUMBER BETWEEN 3-5
